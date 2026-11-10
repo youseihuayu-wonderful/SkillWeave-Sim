@@ -2,14 +2,26 @@
 
 # SkillWeave Sim
 
-Panda/MuJoCo simulation for connecting task planning to executable robot skills.
+Robot simulation workspace with an inherited Panda reference and a G1/MuJoCo validation track.
 
-## Project identity and current scope
+## G1 direction: plan and observation, not a completed VLA migration
+
+The final hardware target is Unitree G1 EDU with dual Dex1. See the [concrete first-stage G1 baseline plan (Chinese)](G1_BASELINE_PLAN.zh-CN.md) on branch `plan/g1-baseline`.
+
+This branch adds a real MuJoCo **scene observer**, not a connected VLA controller or a robot command publisher. It requires the existing G1 source project and its assets:
+
+```sh
+uv run --locked python g1_scene_preview.py --g1-source "$HOME/g1-vla-control" --port 8778
+```
+
+Open http://127.0.0.1:8778/ . Playback, pause, one-physics-step inspection, reset, and four camera views are available. The observer starts paused; VLA inference and hardware execution are not connected. The existing `server.py` and the instructions below still run the Panda reference, not G1.
+
+## Inherited Panda reference: identity and scope
 
 This is an independent project cloned from [Intelligent Grasping](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms), starting at source commit [`efc0f0650530d2216e7cd2601a85557778834371`](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms/commit/efc0f0650530d2216e7cd2601a85557778834371). The original repository is unchanged.
 
 - Repository: https://github.com/youseihuayu-wonderful/SkillWeave-Sim
-- Working branch: [`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim).
+- Panda reference branch: [`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim).
 - Robot: a seven-axis Franka Panda with a two-finger gripper, not Unitree G1.
 - Starting task: grasp the black bowl, place and release it in the already-open bottom drawer, withdraw, close the drawer through contact, and return home empty-handed.
 - Reused capabilities: MuJoCo dynamics and rendering, five bounded storage skills, physical postcondition checks, and the existing subscription-backed GPT planning interface. Fixed execution can run without a model request.
@@ -17,7 +29,7 @@ This is an independent project cloned from [Intelligent Grasping](https://github
 
 The videos, experiment records, model references, and historical project names below are inherited source evidence, not new SkillWeave experiments. The historical Video 1 shows one approved proposal followed by fixed execution; it is not a step-by-step GPT closed-loop recording.
 
-## Start the local simulation
+## Start the inherited Panda simulation
 
 ```sh
 git clone https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git

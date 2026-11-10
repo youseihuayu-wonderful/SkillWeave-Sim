@@ -2,14 +2,26 @@
 
 # SkillWeave Sim
 
-面向任务规划与可执行机器人技能衔接的 Panda/MuJoCo 仿真项目。SkillWeave 表示把技能组合成可执行任务。
+机器人仿真项目：保留 Panda 参考实现，并单独推进 G1/MuJoCo 验证路线。
 
-## 新项目身份与当前范围
+## G1 主线：计划与场景观察，尚未完成 VLA 迁移
+
+最终真机目标是 Unitree G1 EDU＋双 Dex1。具体执行顺序、冻结项和验收门槛见 [`plan/g1-baseline` 分支的 G1 第一阶段计划](G1_BASELINE_PLAN.zh-CN.md)。
+
+本分支新增真实 MuJoCo **场景观察器**，不是已接通的 VLA 控制器，也不发布真机命令。它需要已有 G1 源工程与对应资产：
+
+```sh
+uv run --locked python g1_scene_preview.py --g1-source "$HOME/g1-vla-control" --port 8778
+```
+
+打开 http://127.0.0.1:8778/ ，可播放、暂停、按物理步单步、复位和切换四个视角。观察器默认暂停，未连接 VLA 推理与真机执行。原来的 `server.py` 和下文启动命令仍是 Panda 参考实现，不是 G1。
+
+## 继承的 Panda 参考项目：身份与范围
 
 本项目独立克隆自 [Intelligent Grasping](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms)，起点为来源提交 [`efc0f0650530d2216e7cd2601a85557778834371`](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms/commit/efc0f0650530d2216e7cd2601a85557778834371)。原仓库保持不变。
 
 - 新仓库：https://github.com/youseihuayu-wonderful/SkillWeave-Sim
-- 工作分支：[`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim)。
+- Panda 参考分支：[`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim)。
 - 机器人：Franka Panda 七轴单臂与双指夹爪，不是 Unitree G1。
 - 初始任务：抓取黑碗，放入已经打开的底层抽屉，支撑放置并松爪，撤手，接触推关抽屉，最后空手归位。
 - 复用能力：MuJoCo 动力学与渲染、五项有边界的收纳技能、物理后置条件检查，以及现有 ChatGPT 订阅规划接口。固定执行不需要调用模型。
@@ -17,7 +29,7 @@
 
 下文的视频、实验记录、模型引用和历史项目名称均为继承的来源证据，不是 SkillWeave 新做的实验。历史视频 1 是一次提案获批后的固定执行，不冒充逐项 GPT 闭环录像。
 
-## 启动本地仿真
+## 启动继承的 Panda 仿真
 
 ```sh
 git clone https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git
