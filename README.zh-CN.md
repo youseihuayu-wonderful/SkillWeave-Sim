@@ -37,6 +37,12 @@ uv run --locked python simulation.py \
   --initial-opening-mm 80 --descent-speed-mm-s 200 --close-trigger-height-mm 4
 ```
 
+## 新项目实际运行验证
+
+已在本次新克隆中执行上述五技能命令：`store_and_home` 的全部目标检查均为真，最终技能状态为 `succeeded`，意外碰撞记录为零。最终仿真时钟为 66.54 秒；这不是实际墙钟耗时，也不是提速对照。
+
+这是一次不调用 GPT 的无画面固定技能流程验证，不是统计成功率、新 planner 评测或 VLA／视频理解能力证明。
+
 ## 中英文阅读与界面切换
 
 仓库首页默认显示[完整英文说明](README.md)，本文件保留完整中文版；GitHub 文档通过上方链接切换，不运行页面脚本。实时页面提供全局“English / 中文”切换，覆盖收纳和分拣界面；首次打开默认英语，偏好仅保存在当前浏览器的本地存储（`gpt-ui-language`），不上传到服务端。

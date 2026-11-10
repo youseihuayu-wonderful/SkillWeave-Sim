@@ -37,6 +37,12 @@ uv run --locked python simulation.py \
   --initial-opening-mm 80 --descent-speed-mm-s 200 --close-trigger-height-mm 4
 ```
 
+## New-project smoke verification
+
+The documented five-skill command was executed in this new clone. All `store_and_home` goal checks were true, the final skill reported `succeeded`, and unexpected collision episodes were zero. The final simulation clock was 66.54 seconds; this is not wall-clock execution time or a speedup comparison.
+
+This was one headless fixed-skill baseline run, without a GPT request. It is not a statistical success-rate estimate, a new planner evaluation, or evidence of VLA/video-understanding capability.
+
 ## Reading and switching between Chinese and English
 
 English is the default for this GitHub landing page and for first-time visits to the live simulation. The complete [Chinese edition](README.zh-CN.md) remains available through the button above. GitHub documents switch through links, not page scripts. The live page provides a global **English / 中文** switch for both storage and sorting. The preference is stored only in the current browser's local storage (`gpt-ui-language`) and is not uploaded to the server.
