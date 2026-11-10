@@ -1,8 +1,41 @@
 <a href="README.md"><kbd>English</kbd></a> <a href="README.zh-CN.md"><kbd>中文</kbd></a>
 
-# Intelligent Grasping: Predicting Success and Selecting Approach Speeds of Robotic Arms
+# SkillWeave Sim
 
-历史实验名称、GPT 模型引用与录像保留原貌以供追溯；改名不改变已有实验结果。
+面向任务规划与可执行机器人技能衔接的 Panda/MuJoCo 仿真项目。SkillWeave 表示把技能组合成可执行任务。
+
+## 新项目身份与当前范围
+
+本项目独立克隆自 [Intelligent Grasping](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms)，起点为来源提交 [`efc0f0650530d2216e7cd2601a85557778834371`](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms/commit/efc0f0650530d2216e7cd2601a85557778834371)。原仓库保持不变。
+
+- 新仓库：https://github.com/youseihuayu-wonderful/SkillWeave-Sim
+- 工作分支：[`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim)。
+- 机器人：Franka Panda 七轴单臂与双指夹爪，不是 Unitree G1。
+- 初始任务：抓取黑碗，放入已经打开的底层抽屉，支撑放置并松爪，撤手，接触推关抽屉，最后空手归位。
+- 复用能力：MuJoCo 动力学与渲染、五项有边界的收纳技能、物理后置条件检查，以及现有 ChatGPT 订阅规划接口。固定执行不需要调用模型。
+- 本次克隆不包含人的示范视频理解、VLA/π0.5 动作控制或手机拍照功能。
+
+下文的视频、实验记录、模型引用和历史项目名称均为继承的来源证据，不是 SkillWeave 新做的实验。历史视频 1 是一次提案获批后的固定执行，不冒充逐项 GPT 闭环录像。
+
+## 启动本地仿真
+
+```sh
+git clone https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git
+cd SkillWeave-Sim
+git switch work/skillweave-sim
+uv sync --locked
+uv run --locked python server.py --port 8765
+```
+
+浏览器打开 http://127.0.0.1:8765/ 。这里运行的是真实本地仿真；GitHub 中的视频只是录像。继承的 GPT 模式还需要按下文配置 ChatGPT 订阅登录。
+
+不打开浏览器、不调用 GPT，也可以执行五技能物理收纳流程：
+
+```sh
+uv run --locked python simulation.py \
+  --skill grasp_and_hold place_and_release withdraw_from_drawer close_drawer return_home \
+  --initial-opening-mm 80 --descent-speed-mm-s 200 --close-trigger-height-mm 4
+```
 
 ## 中英文阅读与界面切换
 
@@ -64,7 +97,7 @@ uv run --script build_grasp_speed_report.py
 
 为 GPT 高层任务规划提供真实物理执行能力。默认收纳场景通过当前 ChatGPT 订阅，每轮从五项本地技能中选择**一个动作**，执行后把实际结果送回 GPT。独立分拣场景支持**一次生成完整六物体提案，核对并批准后执行**，同时保留无模型的固定规则对照。两种规划粒度不同，不混称闭环重规划。不需要 API 密钥，没有固定模型回复、物体绑定或动画平移；尚未加入视觉识别或 DP。
 
-仓库：https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms
+仓库：https://github.com/youseihuayu-wonderful/SkillWeave-Sim
 
 默认收纳场景包含 Franka Panda 七轴机械臂、双指夹爪、桌面、黑碗、酒瓶、三层抽屉柜、酒架。浏览器画面由正在运行的 MuJoCo Renderer 生成，不是视频或预录轨迹回放。物体位姿直接取自仿真器。另有下述独立彩色碗杯分拣场景，支持 GPT 提案与固定规划。
 

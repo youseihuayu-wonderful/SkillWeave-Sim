@@ -1,8 +1,41 @@
 <a href="README.md"><kbd>English</kbd></a> <a href="README.zh-CN.md"><kbd>中文</kbd></a>
 
-# Intelligent Grasping: Predicting Success and Selecting Approach Speeds of Robotic Arms
+# SkillWeave Sim
 
-Historical experiment names, GPT model references, and recorded videos are retained for provenance; the rename does not change their results.
+Panda/MuJoCo simulation for connecting task planning to executable robot skills.
+
+## Project identity and current scope
+
+This is an independent project cloned from [Intelligent Grasping](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms), starting at source commit [`efc0f0650530d2216e7cd2601a85557778834371`](https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms/commit/efc0f0650530d2216e7cd2601a85557778834371). The original repository is unchanged.
+
+- Repository: https://github.com/youseihuayu-wonderful/SkillWeave-Sim
+- Working branch: [`work/skillweave-sim`](https://github.com/youseihuayu-wonderful/SkillWeave-Sim/tree/work/skillweave-sim).
+- Robot: a seven-axis Franka Panda with a two-finger gripper, not Unitree G1.
+- Starting task: grasp the black bowl, place and release it in the already-open bottom drawer, withdraw, close the drawer through contact, and return home empty-handed.
+- Reused capabilities: MuJoCo dynamics and rendering, five bounded storage skills, physical postcondition checks, and the existing subscription-backed GPT planning interface. Fixed execution can run without a model request.
+- Human demonstration-video understanding, VLA/π0.5 control, and phone photography are not implemented by this clone.
+
+The videos, experiment records, model references, and historical project names below are inherited source evidence, not new SkillWeave experiments. The historical Video 1 shows one approved proposal followed by fixed execution; it is not a step-by-step GPT closed-loop recording.
+
+## Start the local simulation
+
+```sh
+git clone https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git
+cd SkillWeave-Sim
+git switch work/skillweave-sim
+uv sync --locked
+uv run --locked python server.py --port 8765
+```
+
+Open http://127.0.0.1:8765/ in a browser. This runs the actual local simulator; the GitHub video is a recording. The inherited GPT mode additionally requires the ChatGPT subscription setup documented below.
+
+The five-skill physical storage sequence can also run without a browser or GPT:
+
+```sh
+uv run --locked python simulation.py \
+  --skill grasp_and_hold place_and_release withdraw_from_drawer close_drawer return_home \
+  --initial-opening-mm 80 --descent-speed-mm-s 200 --close-trigger-height-mm 4
+```
 
 ## Reading and switching between Chinese and English
 
@@ -64,7 +97,7 @@ uv run --script build_grasp_speed_report.py
 
 This project provides real physical execution for GPT high-level task planning. In the default storage scene, the current ChatGPT subscription selects **one action** from five local skills per round, and the actual execution result is fed back to GPT. The independent sorting scene supports **generating one complete six-object proposal, reviewing it, and executing it after approval**, while retaining a model-free fixed-rule control. These are different planning granularities and are not both described as closed-loop replanning. No API key is required. There are no fixed model replies, object attachments, or animated object translations; visual recognition and DP have not been added.
 
-Repository: https://github.com/youseihuayu-wonderful/Intelligent-Grasping-Predicting-Success-and-Selecting-Approach-Speeds-of-Robotic-Arms
+Repository: https://github.com/youseihuayu-wonderful/SkillWeave-Sim
 
 The default storage scene contains a seven-axis Franka Panda arm, two-finger gripper, table, black bowl, wine bottle, three-drawer cabinet, and wine rack. Browser images are produced by the running MuJoCo Renderer, not by a video or prerecorded trajectory replay. Object poses come directly from the simulator. The separate colored bowl/cup sorting scene below supports GPT proposals and fixed planning.
 
