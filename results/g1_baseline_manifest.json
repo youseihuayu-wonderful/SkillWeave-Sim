@@ -1,0 +1,1554 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-12T01:52:07.260547+00:00",
+  "scope": "E0 local source, asset, dependency and input inventory; not E4 success or task execution",
+  "source": {
+    "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control",
+    "url": "https://github.com/youseihuayu-wonderful/g1-vla-control.git",
+    "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793",
+    "integrity": {
+      "tracked_files_verified": 251,
+      "comparison": "working_bytes_against_frozen_git_blobs"
+    },
+    "python_modules": [
+      "action_schema",
+      "adaptive_retimer",
+      "adaptive_speed_context",
+      "build_calibrated_observation",
+      "build_quarantined_ensemble",
+      "camera_calibration_search",
+      "camera_calibration_search_v2",
+      "checkpoint_metadata_audit",
+      "comprehensive_sim_validation",
+      "cube_position_calibration_search",
+      "dataset_contract_audit",
+      "dex1_gripper",
+      "experimental_sim_observation",
+      "g1_adaptive_phase_validation",
+      "g1_camera_observation",
+      "g1_camera_readonly_probe",
+      "g1_camera_readonly_soak",
+      "g1_camera_server_readonly",
+      "g1_contract_trajectory",
+      "g1_dds_direct_readonly_profiler",
+      "g1_dds_freshness",
+      "g1_deterministic_speed_paired_ab",
+      "g1_dual_arm_ik",
+      "g1_fail_closed_adapter",
+      "g1_fail_closed_fault_injection",
+      "g1_fast_preflight_30_trajectory_corpus",
+      "g1_fast_preflight_benchmark",
+      "g1_fast_preflight_correctness_corpus",
+      "g1_fast_preflight_near_limit_fuzz",
+      "g1_fast_sequential_ik",
+      "g1_fast_swept_path_preflight",
+      "g1_full29_readonly_analysis",
+      "g1_mujoco_bridge",
+      "g1_offline_compensated_shadow_replay",
+      "g1_offline_five_step_completion",
+      "g1_offline_policy_shadow_replay",
+      "g1_phase_scale_optimizer",
+      "g1_policy_contract",
+      "g1_real_lowstate_offline_parity",
+      "g1_settling_bottleneck_diagnostic",
+      "g1_sim_speed_context",
+      "g1_speed_low_risk_hardware_check",
+      "g1_stable_completion_optimizer",
+      "g1_stable_completion_validation",
+      "g1_unitree_lowstate",
+      "g1_waist_compensation",
+      "g1_waist_compensation_diagnostic",
+      "g1_yuhao_fast_layered_benchmark",
+      "g1_yuhao_fk_source_parity",
+      "generate_professor_research_brief",
+      "generate_report",
+      "generate_simulation_deployment_summary",
+      "lgg100_adaptive_ab",
+      "lgg100_candidate_server",
+      "lgg100_ik_convergence_diagnostic",
+      "lgg100_observation_probe",
+      "lgg100_output_only_soak",
+      "lgg100_quarantined_closed_loop",
+      "lgg100_quarantined_preflight",
+      "lgg100_quarantined_sim_diagnostic",
+      "lgg100_semantic_validation",
+      "lgg100_sim_smoke",
+      "lgg100_speed_context_diagnostic",
+      "lgg100_stochastic_semantic_probe",
+      "local_websocket_policy_client",
+      "neural_action_audit",
+      "offline_replay_comparison",
+      "phase_speed_sweep_validation",
+      "prepare_lgg100_semantic_samples",
+      "quarantined_chunk_executor",
+      "render_camera_observations",
+      "retiming_safety_validation",
+      "run_deep_validation",
+      "run_lgg100_semantic_inference",
+      "run_simulation",
+      "run_stack_scene",
+      "run_validation",
+      "safety_governor",
+      "speed_scheduler",
+      "stack_scene",
+      "swept_path_preflight",
+      "trajectory_analyzer",
+      "visual_fidelity_audit",
+      "whole_body_speed_extension"
+    ],
+    "contract": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/g1_policy_contract.yaml",
+      "sha256": "839e2a3576b3fbb7b09aa457838b4187e53b100f91fa5f48dc74458b21163374"
+    },
+    "assets": {
+      "mujoco_menagerie": {
+        "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/third_party/mujoco_menagerie",
+        "revision": "da76818e269b82289eba39808e2fb91d679d6994",
+        "url": "https://github.com/google-deepmind/mujoco_menagerie.git",
+        "validated_paths": [
+          "unitree_g1",
+          "LICENSE"
+        ],
+        "integrity": {
+          "tracked_files_verified": 64,
+          "comparison": "working_bytes_against_frozen_git_blobs"
+        }
+      },
+      "dex1_1_service": {
+        "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/third_party/dex1_1_service",
+        "revision": "2986d26eefa4136d4777493e6fd0b8bac7a4c6ae",
+        "url": "https://github.com/unitreerobotics/dex1_1_service.git",
+        "validated_paths": [
+          "urdf",
+          "LICENSE"
+        ],
+        "integrity": {
+          "tracked_files_verified": 9,
+          "comparison": "working_bytes_against_frozen_git_blobs"
+        }
+      }
+    },
+    "unitree_sdk": {
+      "initialized": false,
+      "used": false,
+      "required": false
+    }
+  },
+  "workspace_files": {
+    ".gitmodules": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/.gitmodules",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "1a61b9bb4b452765fd46af7009b43c4c17b40747d80d01586b14fa488bbde632",
+      "bytes": 143,
+      "hash_matches_reference": null
+    },
+    "pyproject.toml": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/pyproject.toml",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "05e75363d5c16d3636634bfe879293c9899d0a62f9496aee2408ffc4dd637f0c",
+      "bytes": 345,
+      "hash_matches_reference": null
+    },
+    "uv.lock": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/uv.lock",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "18db4ef5d99fe509b5cea985ae85321a88381f57dfa71280bb8bd4d1b71552ce",
+      "bytes": 62261,
+      "hash_matches_reference": null
+    },
+    "g1_source.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/g1_source.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "7c389f2a25b03ff10bbd355a9f76c7d436a36270da67533cd82470cb4bfa9bc6",
+      "bytes": 7783,
+      "hash_matches_reference": null
+    },
+    "g1_baseline_manifest.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/g1_baseline_manifest.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "1cd1ff23ec140c15752883a25d48900da171ffde3bcbeb3ce4f832b2eefc810f",
+      "bytes": 14148,
+      "hash_matches_reference": null
+    },
+    "g1_preflight.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/g1_preflight.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "a66e86c9fdf5410237b28d410ae3dea29f7b47c7e5b9a3e599bd60f5e3bf282c",
+      "bytes": 1348,
+      "hash_matches_reference": null
+    },
+    "g1_first_target.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/g1_first_target.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "cae9b2ac80414d5a736570a8053a35dbefefb034ea7c0a9369089c1ebdfe1990",
+      "bytes": 13145,
+      "hash_matches_reference": null
+    },
+    "g1_scene_preview.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/g1_scene_preview.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "13d03b1e16a24acf62cd5d3754375bf67f22244d8b807939f9cd905c08789f89",
+      "bytes": 9229,
+      "hash_matches_reference": null
+    },
+    "tests/test_g1_first_target.py": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/tests/test_g1_first_target.py",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "60cb2cea748867cd0f00984dc92abf5f01799a67e9007fac5b6082563e1acd25",
+      "bytes": 6995,
+      "hash_matches_reference": null
+    }
+  },
+  "host": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "version": "Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:04 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6050",
+    "machine": "arm64",
+    "processor": "arm",
+    "node": "MacBook-Pro-5"
+  },
+  "python": {
+    "version": "3.12.12 (main, Jan 27 2026, 23:41:44) [Clang 21.1.4 ]",
+    "implementation": "CPython",
+    "executable": "/Users/shihuayu/Projects/skillweave-sim/.venv/bin/python3",
+    "prefix": "/Users/shihuayu/Projects/skillweave-sim/.venv",
+    "base_prefix": "/Users/shihuayu/.local/share/uv/python/cpython-3.12.12-macos-aarch64-none"
+  },
+  "dependencies": {
+    "mujoco": {
+      "installed": true,
+      "version": "3.3.7"
+    },
+    "numpy": {
+      "installed": true,
+      "version": "2.2.6"
+    },
+    "Pillow": {
+      "installed": true,
+      "version": "12.3.0"
+    },
+    "aiohttp": {
+      "installed": true,
+      "version": "3.14.5"
+    },
+    "jax": {
+      "installed": false,
+      "version": null
+    },
+    "jaxlib": {
+      "installed": false,
+      "version": null
+    },
+    "openpi": {
+      "installed": false,
+      "version": null
+    },
+    "orbax-checkpoint": {
+      "installed": false,
+      "version": null
+    }
+  },
+  "installed_distributions": [
+    {
+      "name": "absl-py",
+      "version": "2.5.1"
+    },
+    {
+      "name": "aiohappyeyeballs",
+      "version": "2.7.1"
+    },
+    {
+      "name": "aiohttp",
+      "version": "3.14.5"
+    },
+    {
+      "name": "aiosignal",
+      "version": "1.4.0"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0"
+    },
+    {
+      "name": "cloudpickle",
+      "version": "3.1.2"
+    },
+    {
+      "name": "etils",
+      "version": "1.14.0"
+    },
+    {
+      "name": "frozenlist",
+      "version": "1.8.0"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0"
+    },
+    {
+      "name": "glfw",
+      "version": "2.11.0"
+    },
+    {
+      "name": "idna",
+      "version": "3.20"
+    },
+    {
+      "name": "joblib",
+      "version": "1.6.0"
+    },
+    {
+      "name": "mujoco",
+      "version": "3.3.7"
+    },
+    {
+      "name": "multidict",
+      "version": "7.2.1"
+    },
+    {
+      "name": "narwhals",
+      "version": "2.28.0"
+    },
+    {
+      "name": "numpy",
+      "version": "2.2.6"
+    },
+    {
+      "name": "pillow",
+      "version": "12.3.0"
+    },
+    {
+      "name": "propcache",
+      "version": "0.5.4"
+    },
+    {
+      "name": "PyOpenGL",
+      "version": "3.1.10"
+    },
+    {
+      "name": "python-dotenv",
+      "version": "1.2.4"
+    },
+    {
+      "name": "scikit-learn",
+      "version": "1.9.1"
+    },
+    {
+      "name": "scipy",
+      "version": "1.18.1"
+    },
+    {
+      "name": "threadpoolctl",
+      "version": "3.7.0"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0"
+    },
+    {
+      "name": "yarl",
+      "version": "1.25.1"
+    },
+    {
+      "name": "zipp",
+      "version": "4.1.2"
+    }
+  ],
+  "accelerator": {
+    "device_probe_performed": false,
+    "gpu_devices": null,
+    "cuda_runtime_version": null,
+    "nvidia_driver_version": null,
+    "status": "no_current_device_or_GPU_execution_evidence",
+    "note": "Package metadata is not a GPU probe. No JAX backend, CUDA device, SSH, or inference was initialized."
+  },
+  "frozen_references": {
+    "policy": {
+      "repository": "LGG100/stack-cube-eef-24k",
+      "revision": "cced7a7ff7b454fdcac555457a1a2a3dc262ac77",
+      "url": "https://huggingface.co/LGG100/stack-cube-eef-24k/tree/cced7a7ff7b454fdcac555457a1a2a3dc262ac77"
+    },
+    "dataset": {
+      "repository": "LGG100/Stack-the-cubes",
+      "revision": "c468ef259ff8bfad1b3b0e7b2c1f45efbb0b30ba",
+      "url": "https://huggingface.co/datasets/LGG100/Stack-the-cubes/tree/c468ef259ff8bfad1b3b0e7b2c1f45efbb0b30ba"
+    },
+    "author_transform": {
+      "url": "https://github.com/leihao100/openpi-fintune",
+      "revision": "29030046fd6a2810201db67b9804f243e0af3218"
+    },
+    "author_deployment_reference_only": {
+      "url": "https://github.com/leihao100/g1-client",
+      "revision": "1422e8d6ef674aa047cfb2878bc7dae54b118fbe",
+      "code_copied_or_executed": false,
+      "license_established_for_reuse": false
+    },
+    "complete_author_training_config_available": false,
+    "exact_historical_openpi_commit_recovered": false
+  },
+  "registered_configuration": {
+    "contract_id": "g1_edu_dual_dex1_eef_v1",
+    "contract_version": "1.3.1",
+    "contract_sha256": "839e2a3576b3fbb7b09aa457838b4187e53b100f91fa5f48dc74458b21163374",
+    "robot": {
+      "manufacturer": "Unitree",
+      "model": "G1 Education",
+      "mujoco_model": "unitree_g1_29dof",
+      "end_effectors": [
+        "left_dex1_1",
+        "right_dex1_1"
+      ],
+      "control_scope": "fixed_stance_upper_body_only",
+      "locomotion_controlled_by_policy": false,
+      "torso_controlled_by_policy": false
+    },
+    "timing": {
+      "policy_rate_hz": 15.0,
+      "policy_rate_confirmed": true,
+      "policy_rate_confirmation_provenance": "project_owner_confirmation_2026-08-24",
+      "action_horizon": 32,
+      "action_horizon_author_confirmed": true,
+      "experimental_comparison_action_horizon": 48,
+      "public_offline_evaluator_action_index": 0,
+      "deployment_receding_horizon": {
+        "source": "openpi/main_eef.py@1422e8d6ef674aa047cfb2878bc7dae54b118fbe",
+        "exec_steps_code_default": 0,
+        "exec_steps_meaning": "execute_full_remaining_horizon",
+        "prefetch_lead_steps_code_default": 5,
+        "blend_steps_code_default": 5,
+        "time_alignment_code_default": true,
+        "blend_space": "joint_space_after_IK",
+        "control_hz_code_default": 15.0,
+        "control_hz_help_text_claim": 30.0,
+        "control_hz_resolved": 15.0,
+        "control_hz_status": "confirmed_15_hz_for_formal_experiment_manifests",
+        "control_hz_confirmation_provenance": "project_owner_confirmation_2026-08-24"
+      },
+      "robot_replan_steps": "deployment_code_is_configurable_and_defaults_to_full_remaining_horizon_with_prefetch",
+      "maximum_observation_age_ms": 100.0,
+      "maximum_policy_response_age_ms": 500.0,
+      "simulation_timestep_s": 0.002,
+      "hardware_command_rate_hz": "must_match_validated_Unitree_controller"
+    },
+    "action": {
+      "key": "actions",
+      "dimension": 16,
+      "semantics": "absolute_target",
+      "frame": "pelvis",
+      "units": {
+        "position": "m",
+        "quaternion": "unit_xyzw",
+        "gripper": "rad"
+      },
+      "channels": [
+        "left_eef_x",
+        "left_eef_y",
+        "left_eef_z",
+        "left_eef_qx",
+        "left_eef_qy",
+        "left_eef_qz",
+        "left_eef_qw",
+        "right_eef_x",
+        "right_eef_y",
+        "right_eef_z",
+        "right_eef_qx",
+        "right_eef_qy",
+        "right_eef_qz",
+        "right_eef_qw",
+        "left_dex1_motor_rad",
+        "right_dex1_motor_rad"
+      ],
+      "gripper_range_rad": [
+        0.0,
+        5.5
+      ],
+      "gripper_direction": "0_closed_5.5_open",
+      "quaternion_norm_tolerance": 0.001,
+      "raw_quaternion_exact_unit_required": false,
+      "maximum_raw_quaternion_norm_error_for_postprocessing": 0.01,
+      "minimum_raw_quaternion_norm_for_postprocessing": 1e-06,
+      "quaternion_postprocessing": "normalize_each_nonzero_xyzw_before_IK_per_public_pi05_g1_eef_policy",
+      "quaternion_postprocessing_source": "src/openpi/policies/unitree_eef_policy.py:L95-L103@29030046fd6a2810201db67b9804f243e0af3218; openpi/eef_kinematics.py:_xyzquat_to_se3@1422e8d6ef674aa047cfb2878bc7dae54b118fbe",
+      "postprocessing_invariants": [
+        "preserve_raw_action_and_sha256",
+        "only_quaternion_components_may_change",
+        "preserve_quaternion_sign",
+        "validate_canonical_action_before_IK",
+        "adaptive_retimer_receives_the_same_canonical_action_for_off_and_on"
+      ]
+    },
+    "model_loading_reference": {
+      "model_config_name": "pi05_g1_eef",
+      "restore_mode": "OpenPI_pi0.5_strict_restore",
+      "action_horizon": 32,
+      "discrete_state_input": false
+    },
+    "actual_model_loading_parameters": null
+  },
+  "inputs": {
+    "searched_package_roots": [
+      "/Users/shihuayu/Projects/skillweave-sim/results",
+      "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results"
+    ],
+    "huggingface_cache_root": "/Users/shihuayu/.cache/huggingface/hub",
+    "checkpoint": {
+      "path": "/Users/shihuayu/.cache/huggingface/hub/models--LGG100--stack-cube-eef-24k/snapshots/cced7a7ff7b454fdcac555457a1a2a3dc262ac77",
+      "selection": "pinned_huggingface_cache_snapshot",
+      "directory_exists": false,
+      "available": false,
+      "expected_file_count": 17,
+      "present_files": [],
+      "missing_files": [
+        ".gitattributes",
+        "_CHECKPOINT_METADATA",
+        "assets/stack-cube-eef/norm_stats.json",
+        "params/_METADATA",
+        "params/_sharding",
+        "params/array_metadatas/process_0",
+        "params/d/3c60a5806a4c68f990c7a2ddbfe2c7d7",
+        "params/manifest.ocdbt",
+        "params/ocdbt.process_0/d/0e5b5f6e1c0ec5d58d4add89e9993de1",
+        "params/ocdbt.process_0/d/216c4172b6f8f2c3beb3442ee563851b",
+        "params/ocdbt.process_0/d/57766178dff7ae31654699368f97993d",
+        "params/ocdbt.process_0/d/64e3c033c4a72a68769e4a5b27c412fe",
+        "params/ocdbt.process_0/d/a887d9a926f3193536c316d9a09efc1d",
+        "params/ocdbt.process_0/d/a9b67a295d2594515fe9465f6900ac8a",
+        "params/ocdbt.process_0/d/cd0526c79cc68acb68b7250ca8140470",
+        "params/ocdbt.process_0/d/d85dd617847995cd4ef3c443bf996a73",
+        "params/ocdbt.process_0/manifest.ocdbt"
+      ],
+      "present_bytes": 0,
+      "historical_expected_bytes": 7168237327,
+      "reference_file_listing": {
+        "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/checkpoint_metadata_audit.json",
+        "available": true,
+        "expected_sha256": null,
+        "sha256": "32dbbcf4bc50098d8a3bd43241f482757555c3d609a47a624a28e7b538dfceb3",
+        "bytes": 12746,
+        "hash_matches_reference": null
+      },
+      "content_hashes_verified": false,
+      "strict_restoration_performed": false,
+      "note": "Presence inventory only; directory name and byte counts do not verify checkpoint identity or completeness."
+    },
+    "normalization_statistics": {
+      "path": "/Users/shihuayu/.cache/huggingface/hub/models--LGG100--stack-cube-eef-24k/snapshots/cced7a7ff7b454fdcac555457a1a2a3dc262ac77/assets/stack-cube-eef/norm_stats.json",
+      "available": false,
+      "expected_sha256": null,
+      "sha256": null,
+      "bytes": null,
+      "hash_matches_reference": null,
+      "paired_checkpoint_provenance_verified": false
+    },
+    "author32_packages": {
+      "synchronized_samples": {
+        "filename": "lgg100_author32_semantic_samples.npz",
+        "candidates": [
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/results/lgg100_author32_semantic_samples.npz",
+            "available": false,
+            "expected_sha256": "e0d7e57c859aa6bbf53792fbf9e14df2cd0a7833319a914325d03174b3487d83",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_semantic_samples.npz",
+            "available": false,
+            "expected_sha256": "e0d7e57c859aa6bbf53792fbf9e14df2cd0a7833319a914325d03174b3487d83",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          }
+        ],
+        "available": false,
+        "reference_hash_verified": false,
+        "content_schema_validated": false
+      },
+      "sample_manifest": {
+        "filename": "lgg100_author32_semantic_samples_manifest.json",
+        "candidates": [
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/results/lgg100_author32_semantic_samples_manifest.json",
+            "available": false,
+            "expected_sha256": "3e7f283b4b9cc79636a65d1857added17035b4b27562fa480248fcefd6009ee4",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_semantic_samples_manifest.json",
+            "available": false,
+            "expected_sha256": "3e7f283b4b9cc79636a65d1857added17035b4b27562fa480248fcefd6009ee4",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          }
+        ],
+        "available": false,
+        "reference_hash_verified": false,
+        "content_schema_validated": false
+      },
+      "semantic_outputs": {
+        "filename": "lgg100_author32_semantic_outputs_quarantined.npz",
+        "candidates": [
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/results/lgg100_author32_semantic_outputs_quarantined.npz",
+            "available": false,
+            "expected_sha256": "92f360ef059617c915d4dabcb90adafa88531528f7cde2d426ff2e5958882173",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_semantic_outputs_quarantined.npz",
+            "available": false,
+            "expected_sha256": "92f360ef059617c915d4dabcb90adafa88531528f7cde2d426ff2e5958882173",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          }
+        ],
+        "available": false,
+        "reference_hash_verified": false,
+        "content_schema_validated": false
+      },
+      "realtime_raw_canonical_package": {
+        "filename": "lgg100_author32_closed_loop_t0_offset008_baseline_realtime_quarantined.npz",
+        "candidates": [
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/results/lgg100_author32_closed_loop_t0_offset008_baseline_realtime_quarantined.npz",
+            "available": false,
+            "expected_sha256": "3f8d8eb0e48b5d950683cd78374f5210876c11cd0a7d50f1dcf1549e8c063386",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_closed_loop_t0_offset008_baseline_realtime_quarantined.npz",
+            "available": false,
+            "expected_sha256": "3f8d8eb0e48b5d950683cd78374f5210876c11cd0a7d50f1dcf1549e8c063386",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          }
+        ],
+        "available": false,
+        "reference_hash_verified": false,
+        "content_schema_validated": false
+      },
+      "paused_raw_canonical_package": {
+        "filename": "lgg100_author32_closed_loop_t0_offset008_baseline_paused_quarantined.npz",
+        "candidates": [
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/results/lgg100_author32_closed_loop_t0_offset008_baseline_paused_quarantined.npz",
+            "available": false,
+            "expected_sha256": "a5adde9e18c506abed0fa3c3ef2f8430f4e753601c2346e7c6eaac392f7264cd",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_closed_loop_t0_offset008_baseline_paused_quarantined.npz",
+            "available": false,
+            "expected_sha256": "a5adde9e18c506abed0fa3c3ef2f8430f4e753601c2346e7c6eaac392f7264cd",
+            "sha256": null,
+            "bytes": null,
+            "hash_matches_reference": null
+          }
+        ],
+        "available": false,
+        "reference_hash_verified": false,
+        "content_schema_validated": false
+      }
+    },
+    "saved_first_target_trace": {
+      "path": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control/results/lgg100_author32_online_ik_convergence_trace.json",
+      "available": true,
+      "expected_sha256": null,
+      "sha256": "7880e37eb86da86cc39b38c6ae9c952d5125b141698214c04e78cede44ca1126",
+      "bytes": 8696,
+      "hash_matches_reference": null,
+      "scope": "Saved numerical targets only; not synchronized multimodal observations or a complete raw/canonical chunk."
+    },
+    "raw_dataset_caches": {
+      "huggingface_snapshot": {
+        "path": "/Users/shihuayu/.cache/huggingface/hub/datasets--LGG100--Stack-the-cubes/snapshots/c468ef259ff8bfad1b3b0e7b2c1f45efbb0b30ba",
+        "directory_exists": false,
+        "parquet_file_count": 0,
+        "parquet_files": [],
+        "raw_dataset_norm_stats": {
+          "path": "/Users/shihuayu/.cache/huggingface/hub/datasets--LGG100--Stack-the-cubes/snapshots/c468ef259ff8bfad1b3b0e7b2c1f45efbb0b30ba/norm_stats.json",
+          "available": false,
+          "expected_sha256": null,
+          "sha256": null,
+          "bytes": null,
+          "hash_matches_reference": null
+        },
+        "pinned_revision_verified": false,
+        "policy_ready_eef_samples": false,
+        "note": "Raw joint-space data/statistics are not checkpoint EEF inputs/statistics."
+      },
+      "legacy_project_cache": {
+        "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes",
+        "directory_exists": true,
+        "parquet_file_count": 100,
+        "parquet_files": [
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000000.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "cead0a9ac51c495a72a4371cc9d9d938acfa9697eee565b0d232992e2e63a9ec",
+            "bytes": 121074,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000001.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "4f5cc361e8bf6577276e8a3ab1e054986c2d873ef141870472f70f1bd3829a40",
+            "bytes": 164099,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000002.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "44672de5a93e8bc2daf750d88906863c14bcf15a580c70976b8a0318eec182ec",
+            "bytes": 235150,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000003.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b73385ac0571533a4b19b71d7eabd8f6812636eb325f264b3a97c3b593a4aaa0",
+            "bytes": 243712,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000004.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c3ad32a46d5ba04194fae67ded8f6d5b2ea07a83d7a38d1814cddf07dfd960a6",
+            "bytes": 187629,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000005.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "cb8fd22e9013d28cd83b6e8870c03656693e70d161fc59f1eae9839cd79b249d",
+            "bytes": 228006,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000006.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "d76bed53aedda96ba35783a17a56b4b1a356e879faac99f1be5b3d8bd9405a61",
+            "bytes": 222634,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000007.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "4626e71dc9985e151e43602a910ce131f15e88a5f0c986f25a71254c7e289d13",
+            "bytes": 219381,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000008.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "ff1ae33d5000d5b8f4e69cfd6b1f99b6317748dc0b2d44ba5d43a8f5d9edb9f1",
+            "bytes": 255960,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000009.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "35eaa7fbfa42c2375809dc6ae5379f49848ecd732e25f6fae48fc3e9e3a75b03",
+            "bytes": 218327,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000010.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b893ca4a2d43b66b3eaa1a68343a304f331a4a6fff5c4010cfb5047d64bd0501",
+            "bytes": 197432,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000011.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "73f87833ad4a285389cddf3d73a51ca680cd1cee666b5cde53dd074aad2f6fe3",
+            "bytes": 197886,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000012.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "dd462694d173cd95d5c948e981a810c4c750687b62f083e4de4643a6b2e0889b",
+            "bytes": 215507,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000013.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "dc4e805887e4c9813c5e0f82d2d2f35667ee03ba6af6bd5deb43cb002d9aff1b",
+            "bytes": 227098,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000014.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "06849ecb50620c0bc78bd61e4e3272a843a4f1e979c70396f87cd51986681a60",
+            "bytes": 246427,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000015.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "bdcbb50e9454bee7cad212cbf5cc16a516959aa45f9bd88db7441be65e162412",
+            "bytes": 162140,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000016.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "4cc682173d9799f8924cec5b9351ebe64c8bc0fc611b2502536725d0888f8bfd",
+            "bytes": 169478,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000017.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "4585dc08dd2bfa6949516ef86347a74e416ca4188fb679bb9a634f3efbd590ca",
+            "bytes": 196799,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000018.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "90fe9f695165a576162a5cc115d1a04ad4845fa84da628a9f7e67a07efb76231",
+            "bytes": 148318,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000019.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "42213e9aaf7b020e627ad5ef9afd1be00cf6ebf3680a92842a9b84f1566f8cdc",
+            "bytes": 178260,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000020.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "8e4706398fda88008b9acfccb5b4b195da7417bf4bfca28452362e48a89293c3",
+            "bytes": 191727,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000021.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "7219ffc2273ae9bca826601c1b2fe0dcee9d6447739f0f76f274e967bc67e77f",
+            "bytes": 236381,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000022.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "9c20f392be7f1640bc35bc85a8f7e17453a37cff913e6fa9afbc1d2cf94d2789",
+            "bytes": 182163,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000023.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "977dedd28b96478a7a6e5f8b1cca18d0486fe9d57565f61a2acaf5ff040977c8",
+            "bytes": 156168,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000024.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "06ef26d14f436082092964887e610486077aaf88a82718a3f969c66f4809021d",
+            "bytes": 121642,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000025.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "5c7367f05d7e093fb4f4c13eeea84110d2bcd87ff15a026224cf38c0b08e3d2a",
+            "bytes": 145780,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000026.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "eed5f52e073f9f7cf5341a1fa2c5734e1de1220fd336ddc9825eeff009d26a1a",
+            "bytes": 165561,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000027.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "91c4f1a90374e7815d88100e5ec9728cbf032a9d06ef080959d6f7886615df59",
+            "bytes": 147212,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000028.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "2a3c4108f20f6dd9dfd4bfaa513c3c1df11dbc086f19336250bdd87ad49bdc3a",
+            "bytes": 185724,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000029.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c3a1ec19bf096792a9d698720f07cb2c4773db2d3734dca58c5d3fa0bf8f8a7e",
+            "bytes": 197662,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000030.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "82a53fabd0b496d58fefdea83cb860f729066c17ad5df39b7a6c1373c02d02f0",
+            "bytes": 197998,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000031.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "5c99eb6b060af4a04236669184d026118bd0e5c6e4cbc0b327f4417b47e96a10",
+            "bytes": 195777,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000032.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "9333501e628a28485b545836a9fdddc7b125dfdd177f40835114dc2d222100c6",
+            "bytes": 159452,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000033.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c97d666eba4cedc3b4ab0c99df11af9c4a5c43c741cfb9509a38465ce6ed1b68",
+            "bytes": 170360,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000034.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "90a82e771af60bca91b926c8cdd152f92ca190f521b73da8f82a6195bca50429",
+            "bytes": 207503,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000035.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "45144f612dce5c39a72ef8c10514cd2c89a6482c1effbfaec36c4b88e44d9ba3",
+            "bytes": 208326,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000036.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "3fc2bc5d852d4f1c3a11e735bc0d1372da0818349a439669a7fe90eaf11f1243",
+            "bytes": 164625,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000037.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "2e746157f4e013c498e98fe56014939b2507de9590084058c3dd62994507b09e",
+            "bytes": 165442,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000038.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c5d0b93ebe35df7229dd43af167e555ae21af4009439b4b5881ab11356f21107",
+            "bytes": 183895,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000039.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "1b25c0edc2b74e311561ce85944f7fd53b008a655b7e903ca9fc6f588bb6a6cb",
+            "bytes": 160357,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000040.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "d60d0512f41c4629d00aa484b5b170655223a83bee64be1611fc12f29089a053",
+            "bytes": 157773,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000041.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "cd721fd990fdd4303f1a3f770926134f36f6532a8e79aa2ed5021108ed5fe630",
+            "bytes": 154378,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000042.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "a536132df97a806ebf77c25a159b1d92be2cf7cfc61c490196dbd2b4c0411a7c",
+            "bytes": 167323,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000043.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "f9ba69f228edbddef678a0f2e4bd53e005f84aeae43082c056643f7832813dd6",
+            "bytes": 140820,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000044.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "452ae578a8fe2b773ff85e052f9af88cd652533b0711d58d724884fd31dc8e9b",
+            "bytes": 144055,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000045.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "fda624d0e97edc0afe883097340191c001cc0e6a0be4a5f2325523ae102c49cb",
+            "bytes": 184034,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000046.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "8ddb7ef27682bf3e149dc0f2b78c35fb42728178d9b4eb899902af71d9f7184e",
+            "bytes": 145479,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000047.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "ee04cd65958ee3c8668408c314366dcc24f791153ec12f9ecee101e230124c23",
+            "bytes": 159719,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000048.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "937b5d7c60b042f571b6ff6963bb2a299f2d6ce16735263b56019b543bef950d",
+            "bytes": 171675,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000049.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "217c2884470b96222931cdef4c1b5848840de4b69c439594b6d151ac4fdb344a",
+            "bytes": 124794,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000050.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "ac73e4fb16e992f0f097150b66fdc6e17b30162bd242c48c6ae137c763bffd14",
+            "bytes": 151437,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000051.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "6680c9e8acc320b36ada5e81f835e42fcf9305f9a4b9db4b1f401c0d283a00a6",
+            "bytes": 122887,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000052.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "42678dafa4c6fb8540b6c5329df131dbd97dac0dcd0eeb012ff4b0111402faef",
+            "bytes": 185639,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000053.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "f9b19a2cdeb4082203816d86a1c9a247a20223ebbf328e208e21b62f17996ef0",
+            "bytes": 183862,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000054.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "f8e1242bf4c95a023ef1660d790c9e1059ff3f297e8736c4218371a750294a76",
+            "bytes": 260601,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000055.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "084975b112ad9cdb53db9818d17b441f69028b1ec33e9a3e8aa37146798dfa6d",
+            "bytes": 184192,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000056.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "7ef99547b6e435e58f314ffb64f01cf90a611d953ec2774da44862fb6018cfb9",
+            "bytes": 169392,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000057.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "0dff95f21ba75c5d5c607d9631014ed437d9e767ff63da730c247b9907bada2f",
+            "bytes": 164807,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000058.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "339fdb0b2067e5b5ab55341b1a34634aa39e38bda014be0aa210a156e239343b",
+            "bytes": 165366,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000059.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c4c138ba799f0fffde418018ff013d591ae2985411abb765d82213c494db329e",
+            "bytes": 189323,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000060.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "edeff848ec0de3b5b1377b8bea73bb7f43ea7f99d9a26368a33cfec530206944",
+            "bytes": 152673,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000061.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c5aa3c2d0b5313edfa2c1ac9e98595fa0ccdce40b7b38e507334b51d0f894a72",
+            "bytes": 176826,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000062.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b786a8d780ce732ee71577ce182344b3b423661529f490b5237506401c5e485b",
+            "bytes": 179220,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000063.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "89dd3515f610b834f6cb422762481d19ad1db2071615436a2e386e631b66837f",
+            "bytes": 204334,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000064.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "29a250ed301dc585d0a8aae861a9d67b73167a5e05d907c53ab8bb5ec452a670",
+            "bytes": 175302,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000065.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "5c158ebaa43ea9f98b6c873f5b08d05a9c071c69628d226702b250c6123152f3",
+            "bytes": 194759,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000066.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b92f645ba5061e14ca55126c1e1d7531466731e3937bcf2dfb58146b3bdf5636",
+            "bytes": 202175,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000067.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "5f2df247fc3fd31946d7a4fa78bf305bf2f783a73eaebb1d7fe50beaea7694ee",
+            "bytes": 161305,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000068.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "95c494c9816d1542f7bf8eaf2fce837492d8b17fbe3130a2410a14d83216bb10",
+            "bytes": 152214,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000069.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "d6139511b93bb2bb0adf8fc2e7e852472a461fcded05d18c49d43ed921fefba6",
+            "bytes": 164434,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000070.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "14512320f5c324235d2bd25b57cd788ad49ffb0635db52ea4264bf1ad1f3bc8e",
+            "bytes": 171176,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000071.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c401c035a4ec6df661774c7dabb2189bab778d4b9dbef35c0085f70863566dc3",
+            "bytes": 176104,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000072.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "e3db919b4411d680c3525fca27de5d77ba58fd9225de66f04ec9acb359a851a5",
+            "bytes": 187598,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000073.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "864867fb672c06a4ac8800d0cea23f222305753614c2358f400ee37b3502c6cc",
+            "bytes": 159298,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000074.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "f8cebe453a5482e3f19d0ef93a0b474c5aae924ac1dd979f139fa0195790b62e",
+            "bytes": 184507,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000075.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "fdc6465ab4e81eb6911bcabea7c0211faa5fa728768fe789befaf3ec2969c712",
+            "bytes": 136757,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000076.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "d3a1bcb67ee7aeafa4e7be6fa43082b5c77befdb157d2259aeeaf66da8342403",
+            "bytes": 155390,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000077.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "9ea28391e1993d32769ec5cebc1853bc8cbb05d93a3566080c504c597528051b",
+            "bytes": 154830,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000078.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b27d4b57e4540aeb35c2b21661e120b7ec28dbfa2825cf5eb268ba1eceef7f9b",
+            "bytes": 129147,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000079.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "0d47fd20fd6cfff68448f733ad4b29442446333477020c2c84c9b8b9ffdb9d9a",
+            "bytes": 125137,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000080.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "3177541ccf6a7258086089a26cad91929ea429daf46a1c09a4568beffa96474b",
+            "bytes": 169963,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000081.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "03ea7f5967b897bbd04b2001a1190e479a700b270ecc764ba962afc444ed5ae2",
+            "bytes": 130538,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000082.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "8014c8c9cab5193a8946dd8b372abe3154faa9335a8a5cd705c18ee5a816d3ff",
+            "bytes": 120631,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000083.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "13830d5e8dc333ca21c0e9dfd1b39f4642c66a3c4064987dfe7e57b5ce940e35",
+            "bytes": 149371,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000084.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "69bfca668e58f0151c6d1495d571f0f0146d92d228253e4759d7b496fc055bf2",
+            "bytes": 144327,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000085.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "565f80b0fbcb8c8573f6b33f081dcd5aed55958d27241d078123672a1acdb3bc",
+            "bytes": 137177,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000086.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "5074f2f1a760fc52b1322344faba08f1ff93ddca25764f4a6ab77db0e11a774a",
+            "bytes": 144656,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000087.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c8577e0d755acb9250f765268395b70ca9a287d3b654712e8c56230250d6024a",
+            "bytes": 120867,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000088.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "b90b7dd8ebed2819f66e000b4d2f5a1ce25a9b4ac36eec2988b0261e59a4d4c6",
+            "bytes": 125687,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000089.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "4b1656ef41e523547f3b43e8f04f6088517c200df48b28914f352012bc20fc4f",
+            "bytes": 139384,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000090.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "0bb45b2ca16358f85c516086774625725fe71c13cef37920cd27d7b1a975e266",
+            "bytes": 148711,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000091.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "6be7eaf401d787ab9b82558793f04b14e6451483e8eaebf27b33af1dd96cdc57",
+            "bytes": 147378,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000092.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "cc413ed20eb9a2207f629dfe42cb4796c6cebb80f96f73f97dab1367e0733a9c",
+            "bytes": 141774,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000093.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "a1c5be0e789300047ff6d2940b9104b13d08b19eec33f857da42c37506f4d256",
+            "bytes": 126332,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000094.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "c1a508a7f4da8a6f2e25e098be437ac7256d3e6e9b39657e80a31fc98794f90a",
+            "bytes": 140301,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000095.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "9f804d6885fa22a46b5bb9f94e7da5dca8721e32e338a2e3891df9c18e318b81",
+            "bytes": 130764,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000096.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "d624c8236624e996ff7772aed936dce0a413e5408361402d19ab2d528e2ac142",
+            "bytes": 114308,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000097.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "1b6d979c5b5b3ef12d5d21d2e8211fe0a441b5951468eee5fb3d63ce00e7c530",
+            "bytes": 125636,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000098.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "ba53edf7fe9dfc935f88c9321a5fb8d433f12e75474a90a8ca1d0cac7a771cce",
+            "bytes": 124874,
+            "hash_matches_reference": null
+          },
+          {
+            "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/episode_000099.parquet",
+            "available": true,
+            "expected_sha256": null,
+            "sha256": "726c426e6c015ad3cb4b61f4fc52757478f7be66a6b5270fde81292b3a9b4831",
+            "bytes": 114970,
+            "hash_matches_reference": null
+          }
+        ],
+        "raw_dataset_norm_stats": {
+          "path": "/Users/shihuayu/.cache/g1_vla_control/stack_the_cubes/norm_stats.json",
+          "available": true,
+          "expected_sha256": null,
+          "sha256": "c0cf4f4db47eb863631a0de5f3cb78b599716ffb719b5333ec35925cb4fc1a49",
+          "bytes": 3944,
+          "hash_matches_reference": null
+        },
+        "pinned_revision_verified": false,
+        "policy_ready_eef_samples": false,
+        "note": "Raw joint-space data/statistics are not checkpoint EEF inputs/statistics."
+      }
+    }
+  },
+  "execution": {
+    "hardware_execution_enabled": false,
+    "robot_transport_initialized": false,
+    "sdk_initialized": false,
+    "publisher_initialized": false,
+    "real_policy_execution_enabled": false,
+    "real_policy_executed": false,
+    "model_loaded": false,
+    "inference_calls": 0,
+    "kinematic_check_performed": false,
+    "physical_simulation_performed": false,
+    "neural_closed_loop_task_performed": false,
+    "e4_success": false
+  },
+  "limitations": {
+    "missing_inputs_in_searched_locations": [
+      "synchronized_samples",
+      "sample_manifest",
+      "semantic_outputs",
+      "realtime_raw_canonical_package",
+      "paused_raw_canonical_package",
+      "complete_checkpoint_file_set",
+      "checkpoint_normalization_statistics"
+    ],
+    "input_schema_and_cross_artifact_provenance_verified": false,
+    "checkpoint_identity_and_restore_verified": false,
+    "gpu_execution_verified": false,
+    "complete_training_config_provenance": false,
+    "scene_calibration_verified": false,
+    "task_success_criteria_validated": false,
+    "inventory_does_not_unlock_execution": true,
+    "remote_artifacts": "Not inspected by this inventory; no successful remote artifact verification."
+  }
+}

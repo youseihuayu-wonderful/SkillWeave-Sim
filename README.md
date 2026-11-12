@@ -4,17 +4,31 @@
 
 Robot simulation workspace with an inherited Panda reference and a G1/MuJoCo validation track.
 
-## G1 direction: plan and observation, not a completed VLA migration
+## G1 direction: pinned scene and first-target diagnostics, not a neural task baseline
 
-The final hardware target is Unitree G1 EDU with dual Dex1. See the [concrete first-stage G1 baseline plan (Chinese)](G1_BASELINE_PLAN.zh-CN.md) on branch `plan/g1-baseline`.
+The final hardware target is Unitree G1 EDU with dual Dex1. This `work/g1-baseline` branch implements the local inventory and offline first-target checks from the [G1 baseline plan and execution record (Chinese)](G1_BASELINE_PLAN.zh-CN.md).
 
-This branch adds a real MuJoCo **scene observer**, not a connected VLA controller or a robot command publisher. It requires the existing G1 source project and its assets:
+G1 source is a Git submodule pinned to `a5e40a25c5c080ae114a925dae94215c7cb6d793`. Initialize only the scene assets below; neither an existing home-directory checkout nor the hardware SDK is required:
 
 ```sh
-uv run --locked python g1_scene_preview.py --g1-source "$HOME/g1-vla-control" --port 8778
+git submodule update --init third_party/g1-vla-control
+git -C third_party/g1-vla-control submodule update --init third_party/mujoco_menagerie third_party/dex1_1_service
+uv run --locked python g1_scene_preview.py --port 8778
 ```
 
 Open http://127.0.0.1:8778/ . Playback, pause, one-physics-step inspection, reset, and four camera views are available. The observer starts paused; VLA inference and hardware execution are not connected. The existing `server.py` and the instructions below still run the Panda reference, not G1.
+
+The [inventory](results/g1_baseline_manifest.json), [saved-first-target diagnosis](results/g1_first_target.json), [development correctness corpus](results/g1_project_correctness_corpus.json), and [viewer smoke evidence](results/g1_observer_smoke.json) are committed. Both saved first targets pass the candidate IK/swept gate; five focused regression tests and the existing seven-case/three-schema-fault development corpus passed. This is not a full raw32 replay, live inference, physical stacking success, or proof of the 100 ms observation-age budget.
+
+Generate new local evidence without overwriting the committed records:
+
+```sh
+uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
+uv run --locked python g1_first_target.py --output results/local_g1_first_target.json
+uv run --locked python -m unittest discover -s tests -p 'test_g1_first_target.py' -v
+```
+
+Choose unused output paths on subsequent runs. Source revisions, tracked bytes and scene assets are checked at startup. Missing checkpoint, synchronized author32 packages, GPU execution evidence and calibrated scene still block a formal neural baseline; the original upstream neural loop is unchanged.
 
 ## Inherited Panda reference: identity and scope
 

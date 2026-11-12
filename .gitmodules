@@ -1,0 +1,3 @@
+[submodule "third_party/g1-vla-control"]
+	path = third_party/g1-vla-control
+	url = https://github.com/youseihuayu-wonderful/g1-vla-control.git

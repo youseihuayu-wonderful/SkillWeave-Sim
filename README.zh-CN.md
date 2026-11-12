@@ -4,17 +4,31 @@
 
 机器人仿真项目：保留 Panda 参考实现，并单独推进 G1/MuJoCo 验证路线。
 
-## G1 主线：计划与场景观察，尚未完成 VLA 迁移
+## G1 主线：固定场景与首目标诊断，尚非神经模型任务基线
 
-最终真机目标是 Unitree G1 EDU＋双 Dex1。具体执行顺序、冻结项和验收门槛见 [`plan/g1-baseline` 分支的 G1 第一阶段计划](G1_BASELINE_PLAN.zh-CN.md)。
+最终真机目标是 Unitree G1 EDU＋双 Dex1。当前 `work/g1-baseline` 分支落实了本地清单与离线首目标检查，具体门槛及本轮结果见 [G1 基线计划和执行记录](G1_BASELINE_PLAN.zh-CN.md)。
 
-本分支新增真实 MuJoCo **场景观察器**，不是已接通的 VLA 控制器，也不发布真机命令。它需要已有 G1 源工程与对应资产：
+G1 源码以 Git 子模块固定在 `a5e40a25c5c080ae114a925dae94215c7cb6d793`。只初始化下面两个场景资产，不再依赖主目录里的旧工程，也不需要初始化真机 SDK：
 
 ```sh
-uv run --locked python g1_scene_preview.py --g1-source "$HOME/g1-vla-control" --port 8778
+git submodule update --init third_party/g1-vla-control
+git -C third_party/g1-vla-control submodule update --init third_party/mujoco_menagerie third_party/dex1_1_service
+uv run --locked python g1_scene_preview.py --port 8778
 ```
 
 打开 http://127.0.0.1:8778/ ，可播放、暂停、按物理步单步、复位和切换四个视角。观察器默认暂停，未连接 VLA 推理与真机执行。原来的 `server.py` 和下文启动命令仍是 Panda 参考实现，不是 G1。
+
+已提交[冻结清单](results/g1_baseline_manifest.json)、[保存首目标诊断](results/g1_first_target.json)、[已有开发正确性 corpus](results/g1_project_correctness_corpus.json)和[观察器实测记录](results/g1_observer_smoke.json)。两个保存首目标均通过候选 IK／扫掠门；5 项定向回归测试、已有 corpus 的 7 个判定样本和 3 个异常输入检查通过。它们不是完整 raw32 回放、实时推理、真实堆叠成功或满足 100 ms 观测预算的证据。
+
+生成新的本地证据，不覆盖已提交记录：
+
+```sh
+uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
+uv run --locked python g1_first_target.py --output results/local_g1_first_target.json
+uv run --locked python -m unittest discover -s tests -p 'test_g1_first_target.py' -v
+```
+
+再次运行时选择尚不存在的输出路径。启动时检查源码提交、已跟踪文件字节与场景资产。配套 checkpoint、同步 author32 包、GPU 运行证据和场景标定仍缺，正式神经模型基线未解锁；上游原神经闭环入口保持不变。
 
 ## 继承的 Panda 参考项目：身份与范围
 

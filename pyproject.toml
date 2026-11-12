@@ -1,7 +1,7 @@
 [project]
 name = "robot-grasp-simulation"
 version = "0.1.0"
-description = "MuJoCo Panda tabletop scene with ground-truth poses and a live browser view"
+description = "G1 MuJoCo baseline diagnostics with an inherited Panda reference"
 requires-python = ">=3.12,<3.13"
 dependencies = [
   "mujoco==3.3.7",

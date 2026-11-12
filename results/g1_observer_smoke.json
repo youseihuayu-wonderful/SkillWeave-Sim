@@ -1,0 +1,44 @@
+{
+  "created_at_utc": "2026-11-12T01:56:24.688Z",
+  "scope": "Repository-owned G1 scene observer only, not VLA task execution",
+  "launch": "uv run --locked python g1_scene_preview.py --port 8778",
+  "controls_exercised": [
+    "resume",
+    "pause",
+    "reset",
+    "step"
+  ],
+  "state": {
+    "time_s": 0.002,
+    "contacts": 9,
+    "paused": true,
+    "error": null,
+    "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+    "policy_connected": false,
+    "hardware_execution_enabled": false
+  },
+  "frames": {
+    "overview": {
+      "status": 200,
+      "width": 640,
+      "height": 480
+    },
+    "cam_left_high": {
+      "status": 200,
+      "width": 640,
+      "height": 480
+    },
+    "cam_left_wrist": {
+      "status": 200,
+      "width": 640,
+      "height": 480
+    },
+    "cam_right_wrist": {
+      "status": 200,
+      "width": 640,
+      "height": 480
+    }
+  },
+  "horizontal_overflow": false,
+  "observed_page_error_count": 0
+}

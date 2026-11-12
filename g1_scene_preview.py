@@ -7,12 +7,13 @@ import asyncio
 import importlib
 import io
 from pathlib import Path
-import sys
 
 from aiohttp import web
 import mujoco
 import numpy as np
 from PIL import Image
+
+from g1_source import activate_source
 
 
 PAGE = """<!doctype html>
@@ -54,11 +55,8 @@ refresh();
 
 
 class ScenePreview:
-    def __init__(self, source: Path):
-        source = source.resolve()
-        if not (source / "stack_scene.py").is_file():
-            raise FileNotFoundError(f"G1 scene source missing: {source / 'stack_scene.py'}")
-        sys.path.insert(0, str(source))
+    def __init__(self, source: Path | None = None):
+        activate_source(source)
         self.scene = importlib.import_module("stack_scene")
         self.model = self.scene.build_model()
         if abs(self.model.opt.timestep - 0.002) > 1e-9:
@@ -161,7 +159,11 @@ class ScenePreview:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--g1-source", type=Path, required=True)
+    parser.add_argument(
+        "--g1-source",
+        type=Path,
+        help="Explicit verified G1 source override; defaults to the pinned repository submodule",
+    )
     parser.add_argument("--port", type=int, default=8778)
     args = parser.parse_args()
     preview = ScenePreview(args.g1_source)

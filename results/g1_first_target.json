@@ -1,0 +1,462 @@
+{
+  "schema": "skillweave.g1.saved-first-target.v1",
+  "scope": "Offline canonical saved-first-target kinematic analysis only",
+  "source": "/Users/shihuayu/Projects/skillweave-sim/third_party/g1-vla-control",
+  "source_evidence": {
+    "results/lgg100_author32_online_ik_convergence_trace.json": {
+      "sha256": "7880e37eb86da86cc39b38c6ae9c952d5125b141698214c04e78cede44ca1126",
+      "size_bytes": 8696
+    },
+    "results/lgg100_author32_closed_loop_t0_offset008_baseline_realtime.json": {
+      "sha256": "f0452531398a05b05120b7e39b5a4d6fe52de6f23e3ac28bcb3ad2109315c99f",
+      "size_bytes": 3828
+    },
+    "results/lgg100_author32_closed_loop_t0_offset008_baseline_paused.json": {
+      "sha256": "8a79dc26be3f21a189244bc519929829de5afa70c5747acc20db334e0df2fe1d",
+      "size_bytes": 3825
+    }
+  },
+  "runtime": {
+    "mujoco": "3.3.7",
+    "numpy": "2.2.6"
+  },
+  "cause_from_frozen_code_and_records": "lgg100_quarantined_closed_loop.py passes online_ik_iterations=30 into G1SweptPathPreflight. Its legacy damping=0.06, step=0.02 solver stops before right orientation meets 3 degrees (6.89/6.29 degrees at 30 in realtime/paused). Stored 250-iteration convergence without joint-limit hits refutes geometric unreachability. This diagnostic uses the existing bounded tolerance-aware solver, not a 250-iteration legacy rerun.",
+  "configuration": {
+    "ik": {
+      "damping": 0.03,
+      "iteration_step_s": 0.04,
+      "maximum_iterations": 60,
+      "max_joint_speed_rad_s": 2.0,
+      "position_tolerance_m": 0.004,
+      "orientation_tolerance_rad": 0.04363323129985824
+    },
+    "registered_position_tolerance_m": 0.005,
+    "registered_orientation_tolerance_deg": 3.0,
+    "maximum_arm_interpolation_step_rad": 0.01,
+    "maximum_finger_interpolation_step_m": 0.001,
+    "collision_policy": "unchanged frozen manipulator_contact_violations"
+  },
+  "modes": {
+    "realtime": {
+      "action": {
+        "origin": "saved JSON canonical analysis values; not original NPZ bytes",
+        "values": [
+          0.2558163954185685,
+          0.153376965701711,
+          0.11930761594659009,
+          0.00970761146575662,
+          -0.04939268941049235,
+          -0.015709703859793863,
+          0.9986086969965092,
+          0.24034645968235335,
+          -0.0646418363687252,
+          0.11474681757050564,
+          0.014566275027167678,
+          -0.03411658195238147,
+          0.27376673010737024,
+          0.961080464869637,
+          5.3348552803045175,
+          5.402504662638246
+        ],
+        "dtype": "<f8",
+        "shape": [
+          16
+        ],
+        "bytes_base64": "Yp0Gu0tf0D8YBNM926HDP1aCp6Txir4/iT8kjpXhgz8A7luj/0mpvx8LO2E0FpC/3zzjOZr07z+ExQU8rMPOP/Y0KA1ejLC/+A/JJAxgvT9CCO5W7NSNP4Y7eYe6d6G/H9Ei5GSF0T/xEK7RK8HuPwk0d03kVhVAOxOqLiqcFUA=",
+        "bytes_sha256": "bb7f9d738836a3ff3cd0b1a24895dca0de11deca88350a5c1157b50748504875",
+        "canonical_json": "[0.2558163954185685,0.153376965701711,0.11930761594659009,0.00970761146575662,-0.04939268941049235,-0.015709703859793863,0.9986086969965092,0.24034645968235335,-0.0646418363687252,0.11474681757050564,0.014566275027167678,-0.03411658195238147,0.27376673010737024,0.961080464869637,5.3348552803045175,5.402504662638246]",
+        "canonical_json_sha256": "2732668e07ae43983648731cba6d831a612764b8e21d72e23a90324afffc62ca",
+        "preserved_by_chunk_constructor": true,
+        "original_archive_path_unavailable_locally": "/home/user1/workspace/shihua/results/lgg100_author32_closed_loop_t0_offset008_baseline_realtime_quarantined.npz",
+        "original_archive_reported_sha256": "3f8d8eb0e48b5d950683cd78374f5210876c11cd0a7d50f1dcf1549e8c063386",
+        "original_full_chunk_reported_sha256": "a9caba1a1ea699ce94c23cc3de29ac458d5255589273f59dc33c5b7ca4cf46c9"
+      },
+      "scene": {
+        "initialization": "build_model; reset_to_reference_pose; translate_cubes; no mj_step",
+        "cube_translation_m": [
+          0.08,
+          0.0,
+          0.0
+        ],
+        "cube_positions_m": {
+          "red": [
+            0.54,
+            0.0,
+            0.8310000000000001
+          ],
+          "blue": [
+            0.51,
+            0.18,
+            0.8310000000000001
+          ],
+          "yellow": [
+            0.51,
+            -0.18,
+            0.8310000000000001
+          ]
+        },
+        "cube_positions_match_saved_report": true,
+        "physics_timestep_s": 0.002,
+        "simulation_time_s": 0.0,
+        "qpos_sha256": "de5314a17e2e6997bb0d93da3649e7e24a2b31ad3254be00529d02d768ed6b32"
+      },
+      "initial_residual_parity": {
+        "matches": true,
+        "comparisons": {
+          "left_position_error_m": {
+            "current": 0.04437080297267834,
+            "saved": 0.04437080297267834,
+            "absolute_difference": 0.0,
+            "absolute_tolerance": 1e-09,
+            "matches": true
+          },
+          "left_orientation_error_deg": {
+            "current": 7.049858563067171,
+            "saved": 7.04985856306717,
+            "absolute_difference": 8.881784197001252e-16,
+            "absolute_tolerance": 1e-07,
+            "matches": true
+          },
+          "right_position_error_m": {
+            "current": 0.029125081832645266,
+            "saved": 0.029125081832645283,
+            "absolute_difference": 1.734723475976807e-17,
+            "absolute_tolerance": 1e-09,
+            "matches": true
+          },
+          "right_orientation_error_deg": {
+            "current": 27.30806853121533,
+            "saved": 27.308068531215334,
+            "absolute_difference": 3.552713678800501e-15,
+            "absolute_tolerance": 1e-07,
+            "matches": true
+          }
+        }
+      },
+      "world_target_positions_match_saved": true,
+      "world_target_wxyz": [
+        0.2558163954185685,
+        0.153376965701711,
+        0.9093076159465902,
+        0.9986086969965093,
+        0.009707611465756622,
+        -0.04939268941049236,
+        -0.015709703859793867,
+        0.24034645968235335,
+        -0.0646418363687252,
+        0.9047468175705057,
+        0.961080464869637,
+        0.014566275027167678,
+        -0.03411658195238147,
+        0.27376673010737024,
+        5.3348552803045175,
+        5.402504662638246
+      ],
+      "initial_scene_matches_saved_evidence": true,
+      "legacy_evidence_not_rerun": {
+        "online_ik_iterations": 30,
+        "swept_path_preflight": {
+          "accepted": false,
+          "reason": "unreachable",
+          "rejection_target_index": 0,
+          "rejection_substep": null,
+          "collision_reasons": []
+        },
+        "errors_at_30": {
+          "iteration": 30,
+          "left_position_error_m": 0.004238835976688354,
+          "right_position_error_m": 0.0021990116514397683,
+          "left_orientation_error_deg": 1.798206600586674,
+          "right_orientation_error_deg": 6.891821814412252
+        },
+        "passes": {
+          "30": false,
+          "250": true
+        }
+      },
+      "solver": {
+        "accepted": true,
+        "reason": "accepted",
+        "total_iterations": 26,
+        "elapsed_ms": 3.415875,
+        "targets": [
+          {
+            "index": 0,
+            "iterations": 26,
+            "joint_target_rad": [
+              -0.03281754050939856,
+              0.03754054687816831,
+              0.00880717244939512,
+              -0.06269560408421405,
+              -0.021992980398911427,
+              -0.00787565744859402,
+              -0.03949493292120675,
+              -0.03275091927924883,
+              -0.013745989502340721,
+              0.3055588562000401,
+              -0.05076254869317091,
+              0.04730107223919819,
+              -0.006268012583077706,
+              0.1991930531215775
+            ],
+            "maximum_position_error_m": 0.0002228276566362728,
+            "maximum_orientation_error_rad": 0.0410115580486188,
+            "reachable": true,
+            "joint_limits_ok": true
+          }
+        ]
+      },
+      "swept_collision_gate": {
+        "accepted": true,
+        "checked_targets": 2,
+        "checked_interpolated_configurations": 32,
+        "maximum_position_error_m": 0.0002228276566362728,
+        "maximum_orientation_error_rad": 0.0410115580486188,
+        "total_ik_iterations": 26,
+        "ik_elapsed_ms": 3.431541,
+        "collision_elapsed_ms": 2.061917,
+        "total_elapsed_ms": 6.773625,
+        "rejection_target_index": null,
+        "rejection_substep": null,
+        "reason": "accepted",
+        "collision_reasons": []
+      },
+      "synthetic_hold": {
+        "samples": 2,
+        "timestamps_s": [
+          0.0,
+          0.06666666666666667
+        ],
+        "distinct_saved_targets": 1,
+        "phase": "free_space"
+      },
+      "source_data_unchanged": true,
+      "false_unreachable_resolved": true,
+      "saved_first_target_full_gate_accepted": true,
+      "total_diagnostic_elapsed_ms": 1299.237958
+    },
+    "paused": {
+      "action": {
+        "origin": "saved JSON canonical analysis values; not original NPZ bytes",
+        "values": [
+          0.2471500677206092,
+          0.14456459579026326,
+          0.12373030623981554,
+          0.012868412822122737,
+          -0.04202403705686792,
+          -0.034932278693467406,
+          0.998422816328916,
+          0.24158694933612357,
+          -0.06871870217591197,
+          0.114726737962006,
+          0.016127199511663328,
+          -0.04332975037034557,
+          0.2553120088355883,
+          0.9657526724338333,
+          5.283512209496089,
+          5.406384424160913
+        ],
+        "dtype": "<f8",
+        "shape": [
+          16
+        ],
+        "bytes_base64": "xDcICZ2izz/gEIq5F4HCP2r20hLKrL8/1pDHIcFaij9JO5yxLISlv8RbIMWk4qG/J9D2ZxTz7z/o/0Q3UuzOP1QXeIKMl7G/LAmGQ7tevT8nJuoJpoOQPx2nkSlRL6a/AWUOLghX0D/hFwQmcufuP6k1TwZRIhVA6X8NPSOgFUA=",
+        "bytes_sha256": "e6e64f044abbd8bff271b7fc17f9f7581892be2089ee48ae7bee4351276d1e60",
+        "canonical_json": "[0.2471500677206092,0.14456459579026326,0.12373030623981554,0.012868412822122737,-0.04202403705686792,-0.034932278693467406,0.998422816328916,0.24158694933612357,-0.06871870217591197,0.114726737962006,0.016127199511663328,-0.04332975037034557,0.2553120088355883,0.9657526724338333,5.283512209496089,5.406384424160913]",
+        "canonical_json_sha256": "97906ba37fba2d0fbf65de806ee95f479cc225ae2dd9ec942a9fd389f892bf8a",
+        "preserved_by_chunk_constructor": true,
+        "original_archive_path_unavailable_locally": "/home/user1/workspace/shihua/results/lgg100_author32_closed_loop_t0_offset008_baseline_paused_quarantined.npz",
+        "original_archive_reported_sha256": "a5adde9e18c506abed0fa3c3ef2f8430f4e753601c2346e7c6eaac392f7264cd",
+        "original_full_chunk_reported_sha256": "260a6d46e2116f5aacee17db65b16f4f744a975b39e0f13e28d005d1ec5e286b"
+      },
+      "scene": {
+        "initialization": "build_model; reset_to_reference_pose; translate_cubes; no mj_step",
+        "cube_translation_m": [
+          0.08,
+          0.0,
+          0.0
+        ],
+        "cube_positions_m": {
+          "red": [
+            0.54,
+            0.0,
+            0.8310000000000001
+          ],
+          "blue": [
+            0.51,
+            0.18,
+            0.8310000000000001
+          ],
+          "yellow": [
+            0.51,
+            -0.18,
+            0.8310000000000001
+          ]
+        },
+        "cube_positions_match_saved_report": true,
+        "physics_timestep_s": 0.002,
+        "simulation_time_s": 0.0,
+        "qpos_sha256": "de5314a17e2e6997bb0d93da3649e7e24a2b31ad3254be00529d02d768ed6b32"
+      },
+      "initial_residual_parity": {
+        "matches": true,
+        "comparisons": {
+          "left_position_error_m": {
+            "current": 0.04391511651664092,
+            "saved": 0.04391511651664092,
+            "absolute_difference": 0.0,
+            "absolute_tolerance": 1e-09,
+            "matches": true
+          },
+          "left_orientation_error_deg": {
+            "current": 5.536047912692435,
+            "saved": 5.536047912692435,
+            "absolute_difference": 0.0,
+            "absolute_tolerance": 1e-07,
+            "matches": true
+          },
+          "right_position_error_m": {
+            "current": 0.02489819827504069,
+            "saved": 0.02489819827504071,
+            "absolute_difference": 1.734723475976807e-17,
+            "absolute_tolerance": 1e-09,
+            "matches": true
+          },
+          "right_orientation_error_deg": {
+            "current": 24.908013158420975,
+            "saved": 24.90801315842097,
+            "absolute_difference": 3.552713678800501e-15,
+            "absolute_tolerance": 1e-07,
+            "matches": true
+          }
+        }
+      },
+      "world_target_positions_match_saved": true,
+      "world_target_wxyz": [
+        0.2471500677206092,
+        0.14456459579026326,
+        0.9137303062398155,
+        0.998422816328916,
+        0.012868412822122737,
+        -0.04202403705686792,
+        -0.034932278693467406,
+        0.24158694933612357,
+        -0.06871870217591197,
+        0.9047267379620061,
+        0.9657526724338334,
+        0.01612719951166333,
+        -0.043329750370345574,
+        0.25531200883558836,
+        5.283512209496089,
+        5.406384424160913
+      ],
+      "initial_scene_matches_saved_evidence": true,
+      "legacy_evidence_not_rerun": {
+        "online_ik_iterations": 30,
+        "swept_path_preflight": {
+          "accepted": false,
+          "reason": "unreachable",
+          "rejection_target_index": 0,
+          "rejection_substep": null,
+          "collision_reasons": []
+        },
+        "errors_at_30": {
+          "iteration": 30,
+          "left_position_error_m": 0.0052069846474332585,
+          "right_position_error_m": 0.0019713101609366477,
+          "left_orientation_error_deg": 1.4341651422135526,
+          "right_orientation_error_deg": 6.286581341637439
+        },
+        "passes": {
+          "30": false,
+          "250": true
+        }
+      },
+      "solver": {
+        "accepted": true,
+        "reason": "accepted",
+        "total_iterations": 25,
+        "elapsed_ms": 3.218791,
+        "targets": [
+          {
+            "index": 0,
+            "iterations": 25,
+            "joint_target_rad": [
+              0.01004028033532057,
+              0.028435062428926666,
+              -0.027998485739495774,
+              -0.15211822686321747,
+              -0.00629940683278946,
+              0.052342454931340106,
+              -0.049857507722162464,
+              -0.03045166502641763,
+              -0.009884012776866343,
+              0.2906529359204923,
+              -0.03929655338549441,
+              0.043982720073155755,
+              -0.036555804575296884,
+              0.17730018889803983
+            ],
+            "maximum_position_error_m": 0.00032318751752902333,
+            "maximum_orientation_error_rad": 0.041105509205833925,
+            "reachable": true,
+            "joint_limits_ok": true
+          }
+        ]
+      },
+      "swept_collision_gate": {
+        "accepted": true,
+        "checked_targets": 2,
+        "checked_interpolated_configurations": 40,
+        "maximum_position_error_m": 0.00032318751752902333,
+        "maximum_orientation_error_rad": 0.041105509205833925,
+        "total_ik_iterations": 25,
+        "ik_elapsed_ms": 3.413125,
+        "collision_elapsed_ms": 2.288,
+        "total_elapsed_ms": 7.040375,
+        "rejection_target_index": null,
+        "rejection_substep": null,
+        "reason": "accepted",
+        "collision_reasons": []
+      },
+      "synthetic_hold": {
+        "samples": 2,
+        "timestamps_s": [
+          0.0,
+          0.06666666666666667
+        ],
+        "distinct_saved_targets": 1,
+        "phase": "free_space"
+      },
+      "source_data_unchanged": true,
+      "false_unreachable_resolved": true,
+      "saved_first_target_full_gate_accepted": true,
+      "total_diagnostic_elapsed_ms": 894.965667
+    }
+  },
+  "all_initial_scenes_match": true,
+  "all_solver_targets_reachable": true,
+  "all_full_gates_accepted": true,
+  "full_raw32_replayed": false,
+  "neural_inference_performed": false,
+  "physical_simulation_performed": false,
+  "dynamics_steps": 0,
+  "reconstruction_limits": {
+    "complete_saved_mjdata_available": false,
+    "bit_exact_physical_state_replay_claimed": false,
+    "parity_scope": "recorded initial FK residuals, world targets and cube positions only"
+  },
+  "integration_scope": {
+    "candidate_project_preflight_only": true,
+    "original_neural_closed_loop_modified": false,
+    "original_neural_closed_loop_still_uses_legacy_gate": true
+  },
+  "observation_freshness": {
+    "assessed": false,
+    "maximum_observation_age_ms": 100.0,
+    "reason": "Offline saved targets have no live observation timestamp; timing is not freshness."
+  },
+  "task_success_demonstrated": false,
+  "g1_execution_enabled": false,
+  "hardware_execution_performed": false
+}

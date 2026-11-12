@@ -13,7 +13,7 @@
 - 新项目：`youseihuayu-wonderful/SkillWeave-Sim`。
 - `main` 和 `work/skillweave-sim` 保留已验证的 **Panda/MuJoCo** 参考项目，不将其结果改称 G1 结果。
 - `plan/g1-baseline` 保存本计划和 G1 场景观察工具。它不是已经迁移完成的 G1 VLA 运行版本。
-- 后续实现使用独立的 `work/g1-baseline` 分支，接入经过来源核对的 G1 模块；不覆盖原 G1 仓库，不混用 Panda 与 G1 的机器人接口。
+- `work/g1-baseline` 当前接入固定 G1 子模块、清单工具和首目标候选门槛；不覆盖原 G1 仓库，不混用 Panda 与 G1 接口，尚非完整神经闭环。
 - G1 来源：`youseihuayu-wonderful/g1-vla-control`，核对时本地工作区干净，提交为 `a5e40a25c5c080ae114a925dae94215c7cb6d793`。
 - SkillWeave 计划分支起点：`cbaa518af63e0e18fd80bc159e7189087c74391c`。
 
@@ -85,7 +85,7 @@ Realtime 与 paused 报告的首动作数值不同，不作为同一个 chunk �
 
 ## 4. 按依赖执行的工作包
 
-以下产物是接下来执行时应生成的文件，不表示这些实验已经完成。
+以下定义各阶段及准入条件；本轮实际执行范围与证据见第 10 节，未通过的门槛仍保持关闭。
 
 ### E0：建立独立、可复现的 G1 实验入口
 
@@ -102,7 +102,7 @@ Realtime 与 paused 报告的首动作数值不同，不作为同一个 chunk �
 
 **通过门槛：** 所有实际使用的输入和判据均可追溯；仍缺的必要样本或配置被明确列为阻塞，不猜默认值。真机命令发布能力保持关闭。
 
-**当前可用性边界：** 本机已找到 100 条缓存 Parquet；未在本地找到前述 author-32 的多模态 NPZ/输出包。旧报告指向 `/home/user1/workspace/shihua/results`，这是历史路径，本轮没有连接或确认该主机。下次执行须先确认授权环境与文件可用性，不重复大规模训练。
+**当前可用性边界：** 本机已核实 100 条缓存 Parquet；没有在已搜索位置找到配套 checkpoint/norm stats、author32 同步样本及 raw/canonical NPZ 包。本轮通过已有 `shihua-vla` SSH 配置尝试只读访问历史 GPU 工作站，但 banner exchange 超时，未能验证远端文件或 GPU；不据此假定远端资源不存在，也不重复训练。
 
 ### E1：解释并修复首目标的拒绝
 
@@ -183,19 +183,20 @@ Realtime 与 paused 报告的首动作数值不同，不作为同一个 chunk �
 
 ## 6. 右侧 G1 场景观察器
 
-本分支提供 `g1_scene_preview.py`。它导入指定 G1 源工程的 `stack_scene`，使用真实 MuJoCo model/data 与 Renderer，不加载 VLA、不导入硬件命令发布入口。
+`work/g1-baseline` 的 `g1_scene_preview.py` 默认使用仓库固定子模块，经启动完整性检查后导入 `stack_scene`。它使用真实 MuJoCo model/data 与 Renderer，不加载 VLA、不导入硬件命令发布入口。
 
 ```sh
-uv run --locked python g1_scene_preview.py \
-  --g1-source "$HOME/g1-vla-control" --port 8778
+git submodule update --init third_party/g1-vla-control
+git -C third_party/g1-vla-control submodule update --init third_party/mujoco_menagerie third_party/dex1_1_service
+uv run --locked python g1_scene_preview.py --port 8778
 terminal-browser open http://127.0.0.1:8778/ --split right --size 0.48
 ```
 
-源工程和其 MuJoCo/Dex1 资产必须已经存在；本分支没有通过这个观察器完成全部 G1 运行时迁移。观察器缺少源文件或发生物理/渲染异常时明确报错，不换成 Panda 或录像。
+源子模块及上述两个资产必须已初始化。启动检查固定提交、已跟踪文件字节、contract SHA、资产版本及同进程模块来源；不悄悄退回主目录旧工程、其他资产、Panda 或录像。显式 `--g1-source` 也必须通过相同验证。
 
 默认暂停。播放只推进原场景的参考站姿控制；单步为一个 0.002 s 物理步；可复位，并切换外部、头部、左腕、右腕视角。观察器页面刷新频率不是正式 VLA 部署频率。
 
-本轮已在实际浏览器验证画面、播放/暂停、单步、复位与四个视角；四路图像请求均返回 200，观测状态中 `policy_connected=false`、`hardware_execution_enabled=false`，检查时页面无运行错误。这个 UI 检查不解锁任何任务或真机 Gate。
+观察器的本轮浏览器实测见第 10 节；UI 检查不解锁任务或真机 Gate。
 
 ## 7. 后续阶段的准入条件
 
@@ -226,3 +227,50 @@ terminal-browser open http://127.0.0.1:8778/ --split right --size 0.48
 - [Paused 失败记录](https://github.com/youseihuayu-wonderful/g1-vla-control/blob/a5e40a25c5c080ae114a925dae94215c7cb6d793/results/lgg100_author32_closed_loop_t0_offset008_baseline_paused.json)
 - [首目标 IK 收敛诊断](https://github.com/youseihuayu-wonderful/g1-vla-control/blob/a5e40a25c5c080ae114a925dae94215c7cb6d793/results/lgg100_author32_online_ik_convergence_trace.json)
 - [部署参考与 Publisher 风险审计](https://github.com/youseihuayu-wonderful/g1-vla-control/blob/a5e40a25c5c080ae114a925dae94215c7cb6d793/YUHAO_G1_CLIENT_DEPLOYMENT_AUDIT_CN.md)
+
+## 10. 2026-11-12 执行记录：本地 E0 清单与 E1 首目标子门
+
+### 已落地的入口和边界
+
+- 独立实现分支：`work/g1-baseline`，起点为计划提交 `c57c99e8827a3847aeb7526b11f165b7b1f21ec4`。
+- `g1_source.py` 激活仓库内固定源；`g1_baseline_manifest.py` 保存来源、应用文件 SHA、依赖、资产与输入可用性。只初始化 Menagerie 与 Dex1 资产，Unitree SDK 未初始化；原 G1 工程未修改。
+- [本轮清单](results/g1_baseline_manifest.json)记录实际 Darwin/arm64、Python、MuJoCo、NumPy 与已安装依赖，以及本机原缓存的 100 个 Parquet 的 SHA。原数据是关节空间数据，不能当 checkpoint 的 EEF 输入或归一化统计。
+- 清单与诊断拒绝覆盖既有文件、悬空链接或写入冻结源目录。该清单不是 checkpoint 严格恢复、完整 E0 输入齐备或 E4 任务通过。
+
+### 首目标原因和候选修正
+
+实际旧调用链为 `lgg100_quarantined_closed_loop.py` → `G1SweptPathPreflight(ik_iterations=args.online_ik_iterations)`；保存运行传入 30 次。保存 trace 中，此时右臂姿态仍超注册门槛，后续离线迭代能收敛且没有关节顶限，因此不能把这次 `unreachable` 等同于几何不可达。本轮读取旧证据，不为确认旧错误而重跑旧失败。
+
+新项目的 `g1_preflight.py` 复用源工程已有 `G1FastSweptPathPreflight` 与有界、按残差提前停止的求解器。没有直接改成 250 次；位置/姿态内部停止条件更严格，关节限位、碰撞分类和扫掠插值门槛未放宽。`iteration_step_s` 是数值 IK 更新参数，不是 MuJoCo 物理步长或动作执行速度。
+
+[首目标诊断](results/g1_first_target.json)核对重建初态的双臂 FK 残差、world 目标及方块位置，均与保存证据匹配。两个记录的目标不同，不当作实时/暂停配对实验。
+
+| 保存目标 | 有界 IK 次数 | 最大位置误差 mm | 最大姿态误差 ° | 首目标扫掠检查 ms |
+|---|---:|---:|---:|---:|
+| realtime | 26 | 0.223 | 2.350 | 6.774 |
+| paused | 25 | 0.323 | 2.355 | 7.040 |
+
+两者在 `free_space` 下通过 IK、限位和扫掠碰撞检查，输入 MjData 不变、物理步数为零。表中是本机一次离线检查耗时，不含完整渲染、推理、传输与提交，不能证明 100 ms 新鲜度或任何任务提速。
+
+**重放边界：** 本地没有完整 raw32 NPZ，也没有完整保存的 MjData。为满足 chunk schema，将同一个保存首目标保持两个采样点，明确标为 synthetic hold；不是恢复出的第二个动作、完整神经 chunk 或位级全物理状态回放。候选门目前只用于本项目诊断，原子模块的神经闭环仍使用旧入口。
+
+### 本轮实际验证
+
+```sh
+uv run --locked python g1_baseline_manifest.py --output results/g1_baseline_manifest.json
+uv run --locked python g1_first_target.py --output results/g1_first_target.json
+uv run --locked python -m unittest discover -s tests -p 'test_g1_first_target.py' -v
+```
+
+这些路径已保存本轮证据；复跑须使用新的输出路径。
+
+- 5 项定向回归通过：保存目标可达、危险远目标拒绝、真实方块/手指碰撞拒绝、拒绝覆盖旧证据与悬空链接、拒绝写入冻结源目录。全部使用实际 MuJoCo 模型；无假造判定。
+- [原有开发正确性 corpus](results/g1_project_correctness_corpus.json)：用一次性构造器适配，将 fast 分支接到真正的 `g1_preflight.create_preflight`，核对插值参数不变，其余物理与判据不 mock。7 个判定样本、3 个异常输入检查通过，无危险放行。按源依赖约束，用 `uv run --locked --with pyarrow==19.0.1` 提供该 corpus 的额外导入依赖；未改变主项目锁文件。[实际命令和适配代码](results/g1_project_correctness_corpus_invocation.json)随证据保存。
+- [右侧观察器实测](results/g1_observer_smoke.json)：默认仓库源启动，实际浏览器完成播放、暂停、复位与单物理步；四个相机均得到 640×480 图像、HTTP 200，无页面运行错误或横向溢出。最终暂停在 0.002 s，VLA 未连接、真机禁用。用户右侧画面保留。
+
+### 仍未通过及下一步
+
+1. **E0 完整模型输入仍阻塞：** 本地项目环境未安装 JAX/OpenPI，缺冻结 checkpoint 及配套统计、同步三相机样本和原始输出包；GPU 工作站 SSH 只读探测超时。先恢复授权计算环境与原包访问，核对 hash/schema/成套来源，不重新训练、不拿原关节统计替代。
+2. **正式任务协议尚未冻结：** 已读旧 evaluator，它按红蓝黄几何关系、线速度和连续 3 次成功循环判定，循环次数不等于固定秒数稳定窗口；未验证支撑接触、红块居中与完整任务超时/失败分类，不能冒充新的物理任务验收。
+3. **E2 未通过：** 旧记录的提交观测年龄已超预算；本轮没有实时神经调用，不能用离线检查时间补算成新鲜观测。
+4. 取得配套原包后，继续完整 chunk/初态/相机/物理标定及动态跟踪检查，随后才接候选门到新的正式闭环。E0–E3 全部通过后再运行 E4；手机、示范 planner、调速比较及真机动作仍不提前解锁。

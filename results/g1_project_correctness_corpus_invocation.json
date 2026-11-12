@@ -1,0 +1,16 @@
+{
+  "scope": "Exact successful one-off offline correctness invocation; not a robot or neural execution script",
+  "argv": [
+    "uv",
+    "run",
+    "--locked",
+    "--with",
+    "pyarrow==19.0.1",
+    "python",
+    "-c",
+    "import hashlib, json\nfrom importlib.metadata import version\nfrom pathlib import Path\nfrom g1_source import activate_source, SOURCE_REVISION\nfrom g1_preflight import create_preflight\nsource = activate_source()\nimport g1_fast_preflight_correctness_corpus as corpus\n\ndef project_gate(model, **options):\n    expected = {\"maximum_arm_interpolation_step_rad\": 0.01, \"maximum_finger_interpolation_step_m\": 0.001}\n    if options != expected:\n        raise ValueError(\"corpus requests a different frozen interpolation contract\")\n    return create_preflight(model)\n\ncorpus.G1FastSweptPathPreflight = project_gate\nsample = source / \"results/g1_lowstate_current_pose_sample_20260824.json\"\nreport = corpus.run_corpus(sample)\nreport[\"skillweave_run\"] = {\n    \"source_revision\": SOURCE_REVISION,\n    \"sample\": str(sample.relative_to(source)),\n    \"sample_sha256\": hashlib.sha256(sample.read_bytes()).hexdigest(),\n    \"project_gate_sha256\": hashlib.sha256(Path(\"g1_preflight.py\").read_bytes()).hexdigest(),\n    \"adapter\": \"Existing corpus fast-gate constructor replaced with real project create_preflight; interpolation options checked equal, no mocked physics or verdicts.\",\n    \"candidate_gate\": \"g1_preflight.create_preflight\",\n    \"validation_extra\": {\"pyarrow\": version(\"pyarrow\")},\n    \"scope\": \"Offline development correctness only; not full neural raw32 replay or real hardware evidence.\"\n}\noutput = Path(\"results/g1_project_correctness_corpus.json\")\nwith output.open(\"x\", encoding=\"utf-8\") as stream:\n    stream.write(json.dumps(report, indent=2, allow_nan=False) + \"\\n\")\nprint(json.dumps({\"output\": str(output), \"summary\": report[\"summary\"], \"safety\": report[\"safety\"]}, indent=2))\nraise SystemExit(0 if report[\"summary\"][\"development_corpus_passed\"] else 2)\n"
+  ],
+  "cwd": "SkillWeave-Sim repository root",
+  "output": "results/g1_project_correctness_corpus.json",
+  "rerun_note": "Choose a new output path before executing; the recorded invocation refuses to overwrite its evidence file."
+}
