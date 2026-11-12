@@ -1,0 +1,111 @@
+{
+  "scope": "One-shot Python controller fault recovery; fault deliberately injected, not physical-stop evidence",
+  "fault_state": {
+    "time_s": 0.0,
+    "contacts": 9,
+    "paused": true,
+    "error": "物理推进异常，未证明安全停止；需要复位或重启：RuntimeError: injected one-shot controller exception",
+    "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+    "skill": {
+      "executor_kind": "scripted_skill",
+      "planner_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false,
+      "status": "running",
+      "phase": "initial_hold",
+      "active": true,
+      "requires_reset": false,
+      "elapsed_s": 0.0,
+      "reason": null,
+      "metrics": {
+        "right_elevation_m": 0.0,
+        "max_right_elevation_m": 0.0,
+        "tracking_error_m": 0.0,
+        "orientation_tracking_error_rad": 1.3010426069826053e-17,
+        "left_return_error_m": 0.0,
+        "right_return_error_m": 0.0,
+        "return_orientation_error_rad": 1.3010426069826053e-17,
+        "robot_max_abs_velocity": 0.0,
+        "eef_speed_m_s": 0.0,
+        "eef_angular_speed_rad_s": 0.0,
+        "base_xy_drift_m": 0.0,
+        "pelvis_height_m": 0.79,
+        "base_tilt_rad": 0.0,
+        "hold_above_minimum_s": 0.0,
+        "settled_for_s": 0.0,
+        "stop_settled": false,
+        "initial_settled_for_s": 0.0,
+        "left_eef_world_m": [
+          0.2674664002271595,
+          0.11786073926987385,
+          0.8853985548098052
+        ],
+        "right_eef_world_m": [
+          0.24806242838499276,
+          -0.09250971773806402,
+          0.9012660982881402
+        ]
+      }
+    },
+    "executor_kind": "scripted_skill",
+    "planner_connected": false,
+    "policy_connected": false,
+    "hardware_execution_enabled": false,
+    "reset_allowed": true
+  },
+  "reset_http_status": 200,
+  "recovered_state": {
+    "time_s": 0.0,
+    "contacts": 9,
+    "paused": true,
+    "error": null,
+    "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+    "skill": {
+      "executor_kind": "scripted_skill",
+      "planner_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false,
+      "status": "idle",
+      "phase": "idle",
+      "active": false,
+      "requires_reset": false,
+      "elapsed_s": 0.0,
+      "reason": null,
+      "metrics": {
+        "right_elevation_m": 0.0,
+        "max_right_elevation_m": 0.0,
+        "tracking_error_m": 0.0,
+        "orientation_tracking_error_rad": 1.3010426069826053e-17,
+        "left_return_error_m": 0.0,
+        "right_return_error_m": 0.0,
+        "return_orientation_error_rad": 1.3010426069826053e-17,
+        "robot_max_abs_velocity": 0.0,
+        "eef_speed_m_s": 0.0,
+        "eef_angular_speed_rad_s": 0.0,
+        "base_xy_drift_m": 0.0,
+        "pelvis_height_m": 0.79,
+        "base_tilt_rad": 0.0,
+        "hold_above_minimum_s": 0.0,
+        "settled_for_s": 0.0,
+        "stop_settled": false,
+        "initial_settled_for_s": 0.0,
+        "left_eef_world_m": [
+          0.2674664002271595,
+          0.11786073926987385,
+          0.8853985548098052
+        ],
+        "right_eef_world_m": [
+          0.24806242838499276,
+          -0.09250971773806402,
+          0.9012660982881402
+        ]
+      }
+    },
+    "executor_kind": "scripted_skill",
+    "planner_connected": false,
+    "policy_connected": false,
+    "hardware_execution_enabled": false,
+    "reset_allowed": true
+  },
+  "post_reset_actual_step_s": 0.002
+}

@@ -4,9 +4,9 @@
 
 机器人仿真项目：保留 Panda 参考实现，并单独推进 G1/MuJoCo 验证路线。
 
-## G1 主线：固定场景与首目标诊断，尚非神经模型任务基线
+## G1 主线：真实物理人工技能，尚非 VLA 任务基线
 
-最终真机目标是 Unitree G1 EDU＋双 Dex1。当前 `work/g1-baseline` 分支落实了本地清单与离线首目标检查，具体门槛及本轮结果见 [G1 基线计划和执行记录](G1_BASELINE_PLAN.zh-CN.md)。
+最终真机目标是 Unitree G1 EDU＋双 Dex1。当前 `work/g1-baseline` 分支已运行并验收**人工编码的右臂抬升—保持—回位技能**，具体协议和结果见 [G1 计划与执行记录](G1_BASELINE_PLAN.zh-CN.md)。
 
 G1 源码以 Git 子模块固定在 `a5e40a25c5c080ae114a925dae94215c7cb6d793`。只初始化下面两个场景资产，不再依赖主目录里的旧工程，也不需要初始化真机 SDK：
 
@@ -16,19 +16,22 @@ git -C third_party/g1-vla-control submodule update --init third_party/mujoco_men
 uv run --locked python g1_scene_preview.py --port 8778
 ```
 
-打开 http://127.0.0.1:8778/ ，可播放、暂停、按物理步单步、复位和切换四个视角。观察器默认暂停，未连接 VLA 推理与真机执行。原来的 `server.py` 和下文启动命令仍是 Panda 参考实现，不是 G1。
+打开 http://127.0.0.1:8778/ ，点击 **开始抬臂技能**。它先实测初始稳定，再抬臂、保持并返回原始世界坐标末端位姿。**物理停止并验证稳定**会取消轨迹并实测停稳，不是冻结物理，也不会报告任务成功。页面默认暂停，提供真实执行结果；planner／VLA／真机均未连接。原来的 `server.py` 和下文命令仍是 Panda 参考实现，不是 G1。
 
-已提交[冻结清单](results/g1_baseline_manifest.json)、[保存首目标诊断](results/g1_first_target.json)、[已有开发正确性 corpus](results/g1_project_correctness_corpus.json)和[观察器实测记录](results/g1_observer_smoke.json)。两个保存首目标均通过候选 IK／扫掠门；5 项定向回归测试、已有 corpus 的 7 个判定样本和 3 个异常输入检查通过。它们不是完整 raw32 回放、实时推理、真实堆叠成功或满足 100 ms 观测预算的证据。
+[实际浏览器录像](media/g1-scripted-arm-baseline.mp4) · [完整动作证据](results/g1_scripted_arm_raise.json) · [真实停止证据](results/g1_scripted_arm_stop.json) · [页面验收记录](results/g1_scripted_arm_browser_smoke.json)。9 项实际模型回归测试通过。运行时只改变执行器命令并推进 MuJoCo，不写入运动中的真实关节位置、不播放录像、不焊基座、不改模型增益、不绕过接触检查。
+
+原有 [VLA 首目标诊断](results/g1_first_target.json)仍是独立离线结果。人工技能成功不代表神经模型堆叠成功、完整 raw32 回放、满足实时观测预算或真机安全认证。
 
 生成新的本地证据，不覆盖已提交记录：
 
 ```sh
 uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
-uv run --locked python g1_first_target.py --output results/local_g1_first_target.json
-uv run --locked python -m unittest discover -s tests -p 'test_g1_first_target.py' -v
+uv run --locked python g1_arm_skill.py --output results/local_g1_arm_raise.json
+uv run --locked python g1_arm_skill.py --output results/local_g1_arm_stop.json --stop-after-s 10.5
+uv run --locked python -m unittest discover -s tests -p 'test_g1_arm_skill.py' -v
 ```
 
-再次运行时选择尚不存在的输出路径。启动时检查源码提交、已跟踪文件字节与场景资产。配套 checkpoint、同步 author32 包、GPU 运行证据和场景标定仍缺，正式神经模型基线未解锁；上游原神经闭环入口保持不变。
+再次运行时选择尚不存在的输出路径。启动时检查源码提交、已跟踪文件字节与场景资产；[本轮源码／环境清单](results/g1_scripted_skill_manifest.json)包含控制器及回归测试 SHA。配套 checkpoint、同步 author32 包、GPU 运行证据和场景标定仍缺，正式神经模型基线未解锁，但不阻塞明确标注的人工技能仿真。上游神经闭环及其禁止执行标志保持不变。
 
 ## 继承的 Panda 参考项目：身份与范围
 
@@ -71,7 +74,7 @@ uv run --locked python simulation.py \
 
 ## 中英文阅读与界面切换
 
-仓库首页默认显示[完整英文说明](README.md)，本文件保留完整中文版；GitHub 文档通过上方链接切换，不运行页面脚本。实时页面提供全局“English / 中文”切换，覆盖收纳和分拣界面；首次打开默认英语，偏好仅保存在当前浏览器的本地存储（`gpt-ui-language`），不上传到服务端。
+仓库首页默认显示[完整英文说明](README.md)，本文件保留完整中文版；GitHub 文档通过上方链接切换，不运行页面脚本。G1 技能仪表盘当前为中文。继承的 Panda 实时页面提供全局“English / 中文”切换，覆盖收纳和分拣界面；首次打开默认英语，偏好仅保存在当前浏览器的本地存储（`gpt-ui-language`），不上传到服务端。
 
 切换仅改变展示，不推进、重置或执行物理仿真，也不发送规划、批准或模型请求；不会覆盖已编辑的任务草稿。原始用户／GPT 文字、JSON、日志、轨迹和历史视频保留原貌，并与翻译后的结构化说明区分；英文说明不意味着历史中文任务曾用英文重新运行。Level 1 验证记录默认提供[英文版](results/grasp_level1_verified_20261104/record.md)，另有[中文版](results/grasp_level1_verified_20261104/record.zh-CN.md)。
 

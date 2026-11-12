@@ -1,0 +1,64 @@
+{
+  "scope": "Pre-implementation investigation; not a skill success or VLA result",
+  "source_revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793",
+  "command": [
+    "uv",
+    "run",
+    "--locked",
+    "python",
+    "-c",
+    "import json, numpy as np, mujoco\nfrom g1_source import activate_source\nactivate_source()\nfrom stack_scene import build_model, reset_to_reference_pose\nfrom safety_governor import manipulator_contact_violations\nm=build_model(); d=mujoco.MjData(m); reset_to_reference_pose(m,d)\nsite=mujoco.mj_name2id(m,mujoco.mjtObj.mjOBJ_SITE,\"right_eef\")\npelvis=mujoco.mj_name2id(m,mujoco.mjtObj.mjOBJ_BODY,\"pelvis\")\ninitial=d.site_xpos[site].copy(); control=d.ctrl.copy(); base=d.xpos[pelvis].copy()\nindices=[int(m.jnt_qposadr[mujoco.mj_name2id(m,mujoco.mjtObj.mjOBJ_JOINT,n)]) for n in (\"right_shoulder_pitch_joint\",\"right_elbow_joint\")]\nposes=[]\nfor shoulder,elbow in ((-0.15,0.4),(-0.3,0.6),(-0.25,0.0)):\n s=mujoco.MjData(m); s.qpos[:]=d.qpos; s.qpos[indices]+=[shoulder,elbow]; mujoco.mj_forward(m,s)\n poses.append({\"shoulder_delta_rad\":shoulder,\"elbow_delta_rad\":elbow,\"eef_delta_m\":(s.site_xpos[site]-initial).tolist(),\"collision_reasons\":manipulator_contact_violations(m,s,\"free_space\")})\nminimum=float(d.xpos[pelvis,2]); reasons=set(); maximum_tilt=0.; maximum_drift=0.\nfor step in range(5000):\n d.ctrl[:]=control; mujoco.mj_step(m,d)\n minimum=min(minimum,float(d.xpos[pelvis,2])); maximum_drift=max(maximum_drift,float(np.linalg.norm(d.xpos[pelvis,:2]-base[:2])))\n maximum_tilt=max(maximum_tilt,float(np.arccos(np.clip(d.xmat[pelvis].reshape(3,3)[2,2],-1,1))))\n reasons.update(manipulator_contact_violations(m,d,\"free_space\"))\n if not np.isfinite(d.qpos).all() or minimum<0.70: break\nprint(json.dumps({\"kinematic_candidates\":poses,\"reference_hold\":{\"sim_time_s\":d.time,\"minimum_pelvis_z_m\":minimum,\"maximum_pelvis_xy_drift_m\":maximum_drift,\"maximum_pelvis_tilt_rad\":maximum_tilt,\"collision_reasons\":sorted(reasons),\"final_right_eef_delta_m\":(d.site_xpos[site]-initial).tolist()}},indent=2))\n"
+  ],
+  "observations": {
+    "kinematic_candidates": [
+      {
+        "shoulder_delta_rad": -0.15,
+        "elbow_delta_rad": 0.4,
+        "eef_delta_m": [
+          0.019086448807739964,
+          0.012809585999839862,
+          -0.05425831533260983
+        ],
+        "collision_reasons": [
+          "dex_cube_outside_manipulation_phase"
+        ]
+      },
+      {
+        "shoulder_delta_rad": -0.3,
+        "elbow_delta_rad": 0.6,
+        "eef_delta_m": [
+          0.040454770948559204,
+          0.021749749298386217,
+          -0.05878308844089741
+        ],
+        "collision_reasons": [
+          "dex_cube_outside_manipulation_phase"
+        ]
+      },
+      {
+        "shoulder_delta_rad": -0.25,
+        "elbow_delta_rad": 0,
+        "eef_delta_m": [
+          0.03469165946989772,
+          0.018396512392721373,
+          0.06411753155962008
+        ],
+        "collision_reasons": []
+      }
+    ],
+    "reference_hold": {
+      "sim_time_s": 10.000000000000009,
+      "minimum_pelvis_z_m": 0.79,
+      "maximum_pelvis_xy_drift_m": 0.01818155367322224,
+      "maximum_pelvis_tilt_rad": 0.03463542200822097,
+      "collision_reasons": [
+        "dex_cube_outside_manipulation_phase"
+      ],
+      "final_right_eef_delta_m": [
+        0.01571459580881812,
+        -0.005356129419922542,
+        -0.012120312531687105
+      ]
+    }
+  }
+}

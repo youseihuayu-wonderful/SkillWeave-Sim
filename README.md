@@ -4,9 +4,9 @@
 
 Robot simulation workspace with an inherited Panda reference and a G1/MuJoCo validation track.
 
-## G1 direction: pinned scene and first-target diagnostics, not a neural task baseline
+## G1 direction: real-physics scripted skill, not a VLA task baseline
 
-The final hardware target is Unitree G1 EDU with dual Dex1. This `work/g1-baseline` branch implements the local inventory and offline first-target checks from the [G1 baseline plan and execution record (Chinese)](G1_BASELINE_PLAN.zh-CN.md).
+The final hardware target is Unitree G1 EDU with dual Dex1. This `work/g1-baseline` branch now runs a physically verified **scripted right-arm raise → hold → return** skill. See the [protocol and execution record (Chinese)](G1_BASELINE_PLAN.zh-CN.md).
 
 G1 source is a Git submodule pinned to `a5e40a25c5c080ae114a925dae94215c7cb6d793`. Initialize only the scene assets below; neither an existing home-directory checkout nor the hardware SDK is required:
 
@@ -16,19 +16,22 @@ git -C third_party/g1-vla-control submodule update --init third_party/mujoco_men
 uv run --locked python g1_scene_preview.py --port 8778
 ```
 
-Open http://127.0.0.1:8778/ . Playback, pause, one-physics-step inspection, reset, and four camera views are available. The observer starts paused; VLA inference and hardware execution are not connected. The existing `server.py` and the instructions below still run the Panda reference, not G1.
+Open http://127.0.0.1:8778/ and click **开始抬臂技能**. The skill first verifies initial stability, then raises, holds and returns to the original world-frame EEF poses. **物理停止并验证稳定** cancels the trajectory and verifies measured rest; it does not freeze physics or report task success. The dashboard starts paused, exposes real results and keeps planner/VLA/hardware disconnected. `server.py` and the inherited instructions below still run Panda, not G1.
 
-The [inventory](results/g1_baseline_manifest.json), [saved-first-target diagnosis](results/g1_first_target.json), [development correctness corpus](results/g1_project_correctness_corpus.json), and [viewer smoke evidence](results/g1_observer_smoke.json) are committed. Both saved first targets pass the candidate IK/swept gate; five focused regression tests and the existing seven-case/three-schema-fault development corpus passed. This is not a full raw32 replay, live inference, physical stacking success, or proof of the 100 ms observation-age budget.
+[Actual browser recording](media/g1-scripted-arm-baseline.mp4) · [full-motion evidence](results/g1_scripted_arm_raise.json) · [physical-stop evidence](results/g1_scripted_arm_stop.json) · [dashboard acceptance](results/g1_scripted_arm_browser_smoke.json). Nine focused real-model regression tests passed. Live movement changes actuator commands and advances MuJoCo; it does not write live joint positions, replay a video, weld the floating base, alter model gains, or bypass contact checks.
+
+The earlier [VLA first-target diagnosis](results/g1_first_target.json) remains a separate offline result. Scripted-skill success does not demonstrate neural stacking, a complete raw32 replay, the real-time observation-age budget, or hardware safety.
 
 Generate new local evidence without overwriting the committed records:
 
 ```sh
 uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
-uv run --locked python g1_first_target.py --output results/local_g1_first_target.json
-uv run --locked python -m unittest discover -s tests -p 'test_g1_first_target.py' -v
+uv run --locked python g1_arm_skill.py --output results/local_g1_arm_raise.json
+uv run --locked python g1_arm_skill.py --output results/local_g1_arm_stop.json --stop-after-s 10.5
+uv run --locked python -m unittest discover -s tests -p 'test_g1_arm_skill.py' -v
 ```
 
-Choose unused output paths on subsequent runs. Source revisions, tracked bytes and scene assets are checked at startup. Missing checkpoint, synchronized author32 packages, GPU execution evidence and calibrated scene still block a formal neural baseline; the original upstream neural loop is unchanged.
+Choose unused output paths on subsequent runs. Source revisions, tracked bytes and scene assets are checked at startup; the [current source/environment inventory](results/g1_scripted_skill_manifest.json) includes controller and regression-test hashes. Missing checkpoint, synchronized author32 packages, GPU execution evidence and scene calibration still block a formal neural baseline, not this explicitly scripted simulation skill. The upstream neural loop and execution prohibitions remain unchanged.
 
 ## Inherited Panda reference: identity and scope
 
@@ -71,7 +74,7 @@ This was one headless fixed-skill baseline run, without a GPT request. It is not
 
 ## Reading and switching between Chinese and English
 
-English is the default for this GitHub landing page and for first-time visits to the live simulation. The complete [Chinese edition](README.zh-CN.md) remains available through the button above. GitHub documents switch through links, not page scripts. The live page provides a global **English / 中文** switch for both storage and sorting. The preference is stored only in the current browser's local storage (`gpt-ui-language`) and is not uploaded to the server.
+English is the default for this GitHub landing page and first-time visits to the inherited Panda interface. The G1 skill dashboard is currently Chinese. The complete [Chinese edition](README.zh-CN.md) remains available through the button above. GitHub documents switch through links, not page scripts. The inherited Panda page provides a global **English / 中文** switch for storage and sorting; its preference is stored only in browser local storage (`gpt-ui-language`), not uploaded.
 
 Switching changes presentation only: it does not advance, reset, or execute the physics simulation, or send planning, approval, or model requests. It does not overwrite an edited task draft. Original user/GPT text, JSON, logs, traces, and historical videos remain unchanged and are distinguished from translated structured explanations. English documentation does not mean historical Chinese tasks were rerun in English. The Level 1 verification record is available in [English](results/grasp_level1_verified_20261104/record.md), with a separate [Chinese edition](results/grasp_level1_verified_20261104/record.zh-CN.md).
 

@@ -1,0 +1,8 @@
+{
+  "source": "results/g1_scripted_arm_browser_smoke.json",
+  "final_navigation_epoch_ms": 1794515436303.8,
+  "all_preserved_error_count": 57,
+  "errors_before_final_navigation": 57,
+  "errors_during_final_acceptance": [],
+  "note": "The preserved connection-refused entries predate the final navigation and occurred during the intentional backend restart. No error history was deleted."
+}
