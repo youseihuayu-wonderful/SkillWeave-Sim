@@ -1,0 +1,401 @@
+{
+  "started_at": "2026-11-13T02:50:10.446Z",
+  "scripted_skill_only": true,
+  "rendered_success": {
+    "status": "规划运行成功（实测成功且反馈一致）",
+    "feedback": "固定右臂抬起、保持1秒并返回脚本已成功完成（16.266秒）。",
+    "approve_disabled": true
+  },
+  "changed_hold": {
+    "state": {
+      "time_s": 0,
+      "contacts": 9,
+      "paused": true,
+      "error": null,
+      "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+      "skill": {
+        "executor_kind": "scripted_skill",
+        "planner_connected": false,
+        "policy_connected": false,
+        "hardware_execution_enabled": false,
+        "status": "idle",
+        "phase": "idle",
+        "active": false,
+        "requires_reset": false,
+        "elapsed_s": 0,
+        "reason": null,
+        "metrics": {
+          "right_elevation_m": 0,
+          "max_right_elevation_m": 0,
+          "tracking_error_m": 0,
+          "orientation_tracking_error_rad": 1.3010426069826053e-17,
+          "left_return_error_m": 0,
+          "right_return_error_m": 0,
+          "return_orientation_error_rad": 1.3010426069826053e-17,
+          "robot_max_abs_velocity": 0,
+          "eef_speed_m_s": 0,
+          "eef_angular_speed_rad_s": 0,
+          "base_xy_drift_m": 0,
+          "pelvis_height_m": 0.79,
+          "base_tilt_rad": 0,
+          "hold_above_minimum_s": 0,
+          "settled_for_s": 0,
+          "stop_settled": false,
+          "initial_settled_for_s": 0,
+          "left_eef_world_m": [
+            0.2674664002271595,
+            0.11786073926987385,
+            0.8853985548098052
+          ],
+          "right_eef_world_m": [
+            0.24806242838499276,
+            -0.09250971773806402,
+            0.9012660982881402
+          ]
+        }
+      },
+      "executor_kind": "scripted_skill",
+      "planner": {
+        "status": "unsupported",
+        "configured": true,
+        "provider": "codex_subscription",
+        "model": "gpt-5.6-terra",
+        "task": "请抬起右臂，保持五秒，然后回到原来的位置。",
+        "decision_id": 194207785238788,
+        "decision": {
+          "decision": "unsupported",
+          "skill": null,
+          "parameters": {},
+          "summary": "无法提出执行方案。",
+          "reason": "请求的保持时长为五秒，而唯一脚本技能固定保持一秒，不能调整。",
+          "unsupported_requirements": [
+            "保持五秒：唯一技能的保持时长固定为1秒，不能设置为5秒。"
+          ]
+        },
+        "assessment": null,
+        "assessment_valid": false,
+        "assessment_cancelled": false,
+        "local_outcome": null,
+        "execution_error": null,
+        "error": null,
+        "locks_scene": false,
+        "thread_id": "01a1d2d0-06b1-7561-b8aa-75af041246ca",
+        "latency_s": 4.830709875037428,
+        "total_latency_s": 4.830709875037428,
+        "history": [
+          {
+            "index": 1,
+            "kind": "decision",
+            "decision_id": 194207785238788,
+            "status": "unsupported",
+            "model": "gpt-5.6-terra",
+            "thread_id": "01a1d2d0-06b1-7561-b8aa-75af041246ca",
+            "latency_s": 4.830709875037428,
+            "diagnostic_count": 2,
+            "error": null
+          }
+        ],
+        "skill_invocations": 0,
+        "planner_connected": true,
+        "executor_kind": "scripted_skill",
+        "observation": "structured_state_only",
+        "camera_input": false,
+        "vla_connected": false,
+        "policy_connected": false,
+        "hardware_execution_enabled": false
+      },
+      "planner_configured": true,
+      "planner_connected": true,
+      "policy_connected": false,
+      "vla_enabled": false,
+      "hardware_execution_enabled": false,
+      "reset_allowed": true
+    },
+    "report": {
+      "status": "unsupported",
+      "configured": true,
+      "provider": "codex_subscription",
+      "model": "gpt-5.6-terra",
+      "task": "请抬起右臂，保持五秒，然后回到原来的位置。",
+      "decision_id": 194207785238788,
+      "decision": {
+        "decision": "unsupported",
+        "skill": null,
+        "parameters": {},
+        "summary": "无法提出执行方案。",
+        "reason": "请求的保持时长为五秒，而唯一脚本技能固定保持一秒，不能调整。",
+        "unsupported_requirements": [
+          "保持五秒：唯一技能的保持时长固定为1秒，不能设置为5秒。"
+        ]
+      },
+      "assessment": null,
+      "assessment_valid": false,
+      "assessment_cancelled": false,
+      "local_outcome": null,
+      "execution_error": null,
+      "error": null,
+      "locks_scene": false,
+      "thread_id": "01a1d2d0-06b1-7561-b8aa-75af041246ca",
+      "latency_s": 4.830709875037428,
+      "total_latency_s": 4.830709875037428,
+      "history": [
+        {
+          "index": 1,
+          "kind": "decision",
+          "decision_id": 194207785238788,
+          "status": "unsupported",
+          "model": "gpt-5.6-terra",
+          "thread_id": "01a1d2d0-06b1-7561-b8aa-75af041246ca",
+          "latency_s": 4.830709875037428,
+          "diagnostic_count": 2,
+          "error": null
+        }
+      ],
+      "skill_invocations": 0,
+      "planner_connected": true,
+      "executor_kind": "scripted_skill",
+      "observation": {
+        "scene_revision": 1,
+        "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+        "simulation_time_s": 0,
+        "skill": {
+          "status": "idle",
+          "phase": "idle",
+          "active": false,
+          "requires_reset": false,
+          "elapsed_s": 0,
+          "reason": null,
+          "metrics": {
+            "right_elevation_m": 0,
+            "max_right_elevation_m": 0,
+            "tracking_error_m": 0,
+            "orientation_tracking_error_rad": 1.3010426069826053e-17,
+            "left_return_error_m": 0,
+            "right_return_error_m": 0,
+            "return_orientation_error_rad": 1.3010426069826053e-17,
+            "robot_max_abs_velocity": 0,
+            "eef_speed_m_s": 0,
+            "eef_angular_speed_rad_s": 0,
+            "base_xy_drift_m": 0,
+            "pelvis_height_m": 0.79,
+            "base_tilt_rad": 0,
+            "hold_above_minimum_s": 0,
+            "settled_for_s": 0,
+            "stop_settled": false,
+            "initial_settled_for_s": 0,
+            "left_eef_world_m": [
+              0.2674664002271595,
+              0.11786073926987385,
+              0.8853985548098052
+            ],
+            "right_eef_world_m": [
+              0.24806242838499276,
+              -0.09250971773806402,
+              0.9012660982881402
+            ]
+          }
+        },
+        "safety": {
+          "phase": "free_space",
+          "numerically_finite": true,
+          "numerical_error": null,
+          "joint_limits_valid": true,
+          "contact_violations": []
+        },
+        "execution_error": null,
+        "source": {
+          "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+        },
+        "scope": {
+          "observation": "structured_state_only",
+          "camera_input": false,
+          "vla_connected": false,
+          "policy_connected": false,
+          "hardware_execution_enabled": false
+        }
+      },
+      "camera_input": false,
+      "vla_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false,
+      "protocol": "g1-scripted-subscription-planning-v1",
+      "source": {
+        "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+      },
+      "capability": {
+        "skill": "g1_right_arm_raise_hold_return",
+        "executor_kind": "scripted_skill",
+        "parameters": {},
+        "atomic": true,
+        "invocations": 1,
+        "description": "One fixed right-arm raise, one-second hold, original world-EEF return; left arm held stationary.",
+        "phases": [
+          "measured initial stability",
+          "raise",
+          "hold",
+          "original world-EEF return",
+          "measured final settle"
+        ],
+        "fixed_timing_s": {
+          "raise_s": 3,
+          "hold_s": 1,
+          "return_s": 3
+        },
+        "acceptance": {
+          "minimum_raise_m": 0.04,
+          "minimum_hold_s": 1,
+          "return_position_tolerance_m": 0.005,
+          "return_orientation_tolerance_rad": 0.05235987755982989,
+          "hard_tracking_error_m": 0.05,
+          "hard_orientation_tracking_error_rad": 0.05235987755982989,
+          "minimum_pelvis_height_m": 0.7,
+          "maximum_base_xy_drift_m": 0.08,
+          "maximum_base_tilt_rad": 0.15,
+          "maximum_robot_abs_velocity": 0.05,
+          "maximum_eef_speed_m_s": 0.01,
+          "maximum_eef_angular_speed_rad_s": 0.05,
+          "sustained_settle_s": 0.5
+        },
+        "unsupported": [
+          "independently selecting macro phases",
+          "repetition or multiple executions",
+          "other effectors or objects",
+          "phone or photography",
+          "video understanding",
+          "different hold durations or motion magnitudes",
+          "hardware execution",
+          "model-generated motor commands or controller parameters"
+        ]
+      },
+      "reviewed_decision_id": 194207785238788,
+      "observation_binding": {
+        "scene_revision": 1,
+        "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+        "simulation_time_s": 0,
+        "source": {
+          "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+        }
+      },
+      "decision_response": {
+        "decision": "unsupported",
+        "skill": null,
+        "parameters": {},
+        "summary": "无法提出执行方案。",
+        "reason": "请求的保持时长为五秒，而唯一脚本技能固定保持一秒，不能调整。",
+        "unsupported_requirements": [
+          "保持五秒：唯一技能的保持时长固定为1秒，不能设置为5秒。"
+        ]
+      },
+      "feedback_response": null,
+      "execution_result": null,
+      "result_capture_error": null,
+      "terminal_observed": false,
+      "physical_stop_proven": false,
+      "success": false
+    },
+    "visible_proposal": "当前模型提案（实际回复）\n\n不支持完整请求，未执行：无法提出执行方案。\n\n当前提案 ID：194207785238788\n\n{\n  \"decision\": \"unsupported\",\n  \"skill\": null,\n  \"parameters\": {},\n  \"summary\": \"无法提出执行方案。\",\n  \"reason\": \"请求的保持时长为五秒，而唯一脚本技能固定保持一秒，不能调整。\",\n  \"unsupported_requirements\": [\n    \"保持五秒：唯一技能的保持时长固定为1秒，不能设置为5秒。\"\n  ]\n}"
+  },
+  "error": "ToolError: tab.waitFor(\"#planner-execute:enabled\") failed fast after 2000ms; selector currently matches no elements — run tab.observe() or tab.ariaSnapshot() to inspect the page",
+  "failure_state": {
+    "time_s": 0,
+    "contacts": 9,
+    "paused": true,
+    "error": null,
+    "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+    "skill": {
+      "executor_kind": "scripted_skill",
+      "planner_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false,
+      "status": "idle",
+      "phase": "idle",
+      "active": false,
+      "requires_reset": false,
+      "elapsed_s": 0,
+      "reason": null,
+      "metrics": {
+        "right_elevation_m": 0,
+        "max_right_elevation_m": 0,
+        "tracking_error_m": 0,
+        "orientation_tracking_error_rad": 1.3010426069826053e-17,
+        "left_return_error_m": 0,
+        "right_return_error_m": 0,
+        "return_orientation_error_rad": 1.3010426069826053e-17,
+        "robot_max_abs_velocity": 0,
+        "eef_speed_m_s": 0,
+        "eef_angular_speed_rad_s": 0,
+        "base_xy_drift_m": 0,
+        "pelvis_height_m": 0.79,
+        "base_tilt_rad": 0,
+        "hold_above_minimum_s": 0,
+        "settled_for_s": 0,
+        "stop_settled": false,
+        "initial_settled_for_s": 0,
+        "left_eef_world_m": [
+          0.2674664002271595,
+          0.11786073926987385,
+          0.8853985548098052
+        ],
+        "right_eef_world_m": [
+          0.24806242838499276,
+          -0.09250971773806402,
+          0.9012660982881402
+        ]
+      }
+    },
+    "executor_kind": "scripted_skill",
+    "planner": {
+      "status": "planning",
+      "configured": true,
+      "provider": "codex_subscription",
+      "model": "gpt-5.6-terra",
+      "task": "请抬起右臂，保持一秒，然后回到原来的位置。",
+      "decision_id": 194207785238789,
+      "decision": null,
+      "assessment": null,
+      "assessment_valid": false,
+      "assessment_cancelled": false,
+      "local_outcome": null,
+      "execution_error": null,
+      "error": null,
+      "locks_scene": true,
+      "thread_id": null,
+      "latency_s": null,
+      "total_latency_s": 0,
+      "history": [
+        {
+          "index": 1,
+          "kind": "decision",
+          "decision_id": 194207785238789,
+          "status": "planning",
+          "model": "gpt-5.6-terra",
+          "thread_id": null,
+          "latency_s": null,
+          "diagnostic_count": 0,
+          "error": null
+        }
+      ],
+      "skill_invocations": 0,
+      "planner_connected": false,
+      "executor_kind": "scripted_skill",
+      "observation": "structured_state_only",
+      "camera_input": false,
+      "vla_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false
+    },
+    "planner_configured": true,
+    "planner_connected": true,
+    "policy_connected": false,
+    "vla_enabled": false,
+    "hardware_execution_enabled": false,
+    "reset_allowed": false
+  },
+  "stop_recording": {
+    "path": "/Users/shihuayu/Projects/skillweave-sim/media/g1-planner-stop-feedback.mp4",
+    "durationMs": 2084,
+    "frames": 18,
+    "bytes": 111574
+  },
+  "finished_at": "2026-11-13T02:50:17.870Z"
+}

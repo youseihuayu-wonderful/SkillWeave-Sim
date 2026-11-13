@@ -4,34 +4,48 @@
 
 机器人仿真项目：保留 Panda 参考实现，并单独推进 G1/MuJoCo 验证路线。
 
-## G1 主线：真实物理人工技能，尚非 VLA 任务基线
+## G1 主线：真实 planner → 审批 → 人工技能，尚非 VLA
 
-最终真机目标是 Unitree G1 EDU＋双 Dex1。当前 `work/g1-baseline` 分支已运行并验收**人工编码的右臂抬升—保持—回位技能**，具体协议和结果见 [G1 计划与执行记录](G1_BASELINE_PLAN.zh-CN.md)。
+最终真机目标是 Unitree G1 EDU＋双 Dex1。当前 `work/g1-baseline` 分支已把真实订阅 planner 接到**人工编码的右臂抬升—保持—回位技能**。模型只提议一次固定宏动作；内部阶段是人工编写，不是学习或独立规划的技能。具体协议与结果见 [G1 执行记录第 12 节](G1_BASELINE_PLAN.zh-CN.md#12-真实-planner-接入人工技能与实测反馈)。
 
 G1 源码以 Git 子模块固定在 `a5e40a25c5c080ae114a925dae94215c7cb6d793`。只初始化下面两个场景资产，不再依赖主目录里的旧工程，也不需要初始化真机 SDK：
 
 ```sh
+git clone --branch work/g1-baseline https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git
+cd SkillWeave-Sim
+uv sync --locked
 git submodule update --init third_party/g1-vla-control
 git -C third_party/g1-vla-control submodule update --init third_party/mujoco_menagerie third_party/dex1_1_service
 uv run --locked python g1_scene_preview.py --port 8778
 ```
 
-打开 http://127.0.0.1:8778/ ，点击 **开始抬臂技能**。它先实测初始稳定，再抬臂、保持并返回原始世界坐标末端位姿。**物理停止并验证稳定**会取消轨迹并实测停稳，不是冻结物理，也不会报告任务成功。页面默认暂停，提供真实执行结果；planner／VLA／真机均未连接。原来的 `server.py` 和下文命令仍是 Panda 参考实现，不是 G1。
+打开 http://127.0.0.1:8778/ 。规划需要 `PATH` 中的官方 Codex CLI，并通过 **`codex login` 登录 ChatGPT 订阅**；复用 `planner.py`，没有 API 密钥回退。本轮请求模型标识为 `gpt-5.6-terra`，不代表已证明服务端权重快照。
 
-[实际浏览器录像](media/g1-scripted-arm-baseline.mp4) · [完整动作证据](results/g1_scripted_arm_raise.json) · [真实停止证据](results/g1_scripted_arm_stop.json) · [页面验收记录](results/g1_scripted_arm_browser_smoke.json)。9 项实际模型回归测试通过。运行时只改变执行器命令并推进 MuJoCo，不写入运动中的真实关节位置、不播放录像、不焊基座、不改模型增益、不绕过接触检查。
+1. 输入 `请抬起右臂，保持一秒，然后回到原来的位置。`，点击 **请求真实 GPT 规划**；此时不会执行技能。
+2. 核对提案绑定的原始任务、实际回复和提案编号，再点 **批准当前提案并执行**，只授权一次固定技能。
+3. 查看本地实测终态与另列的真实模型反馈。运动中点击 **取消规划 / 物理停止**会继续物理积分直到实测停稳；停止不算任务成功。
 
-原有 [VLA 首目标诊断](results/g1_first_target.json)仍是独立离线结果。人工技能成功不代表神经模型堆叠成功、完整 raw32 回放、满足实时观测预算或真机安全认证。
+规划、待审批和结果评估期间有意暂停仿真时钟，不能作为真机时序或观测新鲜度证明。会话期间锁定改变场景的控制；技能终态后须显式复位。超出能力的完整请求被拒绝，不部分替代。模型只读取结构化状态，不看相机、不生成电机目标；VLA／真机仍禁用。**独立手动基线 / 空闲预览**保留无模型技能入口，绝不是规划失败自动回退。原来的 `server.py` 与下文命令仍是 Panda 参考实现。
+
+[实际审批／物理执行录像](media/g1-planner-approved-skill.mp4) · [真实页面结果与反馈](results/g1_planner_ui_approval.json) · [物理停止及反馈录像](media/g1-planner-physical-stop.mp4) · [真实页面停止结果](results/g1_planner_ui_stop.json)。
+
+独立真实运行已验证[成功执行](results/g1_planner_success.json)、[完整拒绝手机拍照复合请求](results/g1_planner_unsupported.json)、[物理停止](results/g1_planner_stopped.json)、[真实注入碰撞失败及模型反馈](results/g1_planner_collision_failure.json)。页面另[完整拒绝保持五秒](results/g1_planner_ui_guards.json)，冲突控制拒绝证据见上方页面执行记录。自动化首次两秒等待在审批前提前结束；随后继续同一个未审批提案完成停止验证，没有重新请求规划。
+
+**27 项定向规划契约测试通过**；其中受控模型／执行器替身不算真实模型或物理运行证据。此前[手动技能录像](media/g1-scripted-arm-baseline.mp4)与 9 项真实模型回归单独保留。物理控制器未改动：运行时只改变执行器命令并推进 MuJoCo，不写运动中的真实关节位置、不播放录像、不焊基座、不改增益、不绕过接触检查。
+
+原有 [VLA 首目标诊断](results/g1_first_target.json)仍是独立离线结果。这次单宏动作接入不代表通用任务拆解、人类视频理解、手机拍照、神经模型堆叠、完整 raw32 回放、满足实时观测预算或真机安全认证。模型原文不能覆盖本地失败／停止结果；实测低速停稳不代表碰撞已经解除。
 
 生成新的本地证据，不覆盖已提交记录：
 
 ```sh
 uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
-uv run --locked python g1_arm_skill.py --output results/local_g1_arm_raise.json
-uv run --locked python g1_arm_skill.py --output results/local_g1_arm_stop.json --stop-after-s 10.5
-uv run --locked python -m unittest discover -s tests -p 'test_g1_arm_skill.py' -v
+uv run --locked python run_g1_planning.py --output results/local_g1_proposal.json
+uv run --locked python run_g1_planning.py --execute --output results/local_g1_planned_raise.json
+uv run --locked python run_g1_planning.py --execute --stop-after-s 10.5 --output results/local_g1_planned_stop.json
+uv run --locked python -m unittest discover -s tests -p 'test_g1_planning.py' -v
 ```
 
-再次运行时选择尚不存在的输出路径。启动时检查源码提交、已跟踪文件字节与场景资产；[本轮源码／环境清单](results/g1_scripted_skill_manifest.json)包含控制器及回归测试 SHA。配套 checkpoint、同步 author32 包、GPU 运行证据和场景标定仍缺，正式神经模型基线未解锁，但不阻塞明确标注的人工技能仿真。上游神经闭环及其禁止执行标志保持不变。
+再次运行时选择尚不存在的输出路径。不带 `--execute` 只请求真实提案，不推进物理；`--execute` 明确批准本次实际绑定的提案。证据原子新建、不覆盖旧记录。启动时检查源码提交、已跟踪文件字节与场景资产；[本轮源码／环境清单](results/g1_planner_manifest.json)包含 planner、执行器、页面与测试 SHA。清单进程自身不调用模型或机器人，执行证据以上述独立记录为准。配套 checkpoint、同步 author32 包、GPU 运行证据和场景标定仍缺，正式神经模型基线未解锁；上游神经闭环与禁止执行标志保持不变。
 
 ## 继承的 Panda 参考项目：身份与范围
 

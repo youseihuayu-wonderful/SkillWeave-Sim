@@ -1,0 +1,289 @@
+{
+  "generated_at": "2026-11-13T02:59:54.520Z",
+  "approved": false,
+  "physics_steps": 0,
+  "state": {
+    "time_s": 0,
+    "contacts": 9,
+    "paused": true,
+    "error": null,
+    "task_prompt": "Stack the blocks by color: put the red block in the center, then stack the blue block on the red block, then stack the yellow block on the blue block.",
+    "skill": {
+      "executor_kind": "scripted_skill",
+      "planner_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false,
+      "status": "idle",
+      "phase": "idle",
+      "active": false,
+      "requires_reset": false,
+      "elapsed_s": 0,
+      "reason": null,
+      "metrics": {
+        "right_elevation_m": 0,
+        "max_right_elevation_m": 0,
+        "tracking_error_m": 0,
+        "orientation_tracking_error_rad": 1.3010426069826053e-17,
+        "left_return_error_m": 0,
+        "right_return_error_m": 0,
+        "return_orientation_error_rad": 1.3010426069826053e-17,
+        "robot_max_abs_velocity": 0,
+        "eef_speed_m_s": 0,
+        "eef_angular_speed_rad_s": 0,
+        "base_xy_drift_m": 0,
+        "pelvis_height_m": 0.79,
+        "base_tilt_rad": 0,
+        "hold_above_minimum_s": 0,
+        "settled_for_s": 0,
+        "stop_settled": false,
+        "initial_settled_for_s": 0,
+        "left_eef_world_m": [
+          0.2674664002271595,
+          0.11786073926987385,
+          0.8853985548098052
+        ],
+        "right_eef_world_m": [
+          0.24806242838499276,
+          -0.09250971773806402,
+          0.9012660982881402
+        ]
+      }
+    },
+    "executor_kind": "scripted_skill",
+    "planner": {
+      "status": "ready",
+      "configured": true,
+      "provider": "codex_subscription",
+      "model": "gpt-5.6-terra",
+      "task": "请抬起右臂，保持一秒，然后回到原来的位置。",
+      "decision_id": 210053114449470,
+      "decision": {
+        "decision": "execute",
+        "skill": "g1_right_arm_raise_hold_return",
+        "parameters": {},
+        "summary": "提议执行一次右臂固定抬起、保持1秒并返回原始世界坐标末端位置的脚本技能。",
+        "reason": "请求与目录中唯一的单次固定脚本技能完全一致；仅为待人工批准的仿真执行提案。",
+        "unsupported_requirements": []
+      },
+      "assessment": null,
+      "assessment_valid": false,
+      "assessment_cancelled": false,
+      "local_outcome": null,
+      "execution_error": null,
+      "error": null,
+      "locks_scene": true,
+      "thread_id": "01a1d2d8-d8c2-7290-96d5-c18b8a16fa43",
+      "latency_s": 5.7473650839529,
+      "total_latency_s": 5.7473650839529,
+      "history": [
+        {
+          "index": 1,
+          "kind": "decision",
+          "decision_id": 210053114449470,
+          "status": "ready",
+          "model": "gpt-5.6-terra",
+          "thread_id": "01a1d2d8-d8c2-7290-96d5-c18b8a16fa43",
+          "latency_s": 5.7473650839529,
+          "diagnostic_count": 2,
+          "error": null
+        }
+      ],
+      "skill_invocations": 0,
+      "planner_connected": true,
+      "executor_kind": "scripted_skill",
+      "observation": "structured_state_only",
+      "camera_input": false,
+      "vla_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false
+    },
+    "planner_configured": true,
+    "planner_connected": true,
+    "policy_connected": false,
+    "vla_enabled": false,
+    "hardware_execution_enabled": false,
+    "reset_allowed": false
+  },
+  "report": {
+    "status": "ready",
+    "configured": true,
+    "provider": "codex_subscription",
+    "model": "gpt-5.6-terra",
+    "task": "请抬起右臂，保持一秒，然后回到原来的位置。",
+    "decision_id": 210053114449470,
+    "decision": {
+      "decision": "execute",
+      "skill": "g1_right_arm_raise_hold_return",
+      "parameters": {},
+      "summary": "提议执行一次右臂固定抬起、保持1秒并返回原始世界坐标末端位置的脚本技能。",
+      "reason": "请求与目录中唯一的单次固定脚本技能完全一致；仅为待人工批准的仿真执行提案。",
+      "unsupported_requirements": []
+    },
+    "assessment": null,
+    "assessment_valid": false,
+    "assessment_cancelled": false,
+    "local_outcome": null,
+    "execution_error": null,
+    "error": null,
+    "locks_scene": true,
+    "thread_id": "01a1d2d8-d8c2-7290-96d5-c18b8a16fa43",
+    "latency_s": 5.7473650839529,
+    "total_latency_s": 5.7473650839529,
+    "history": [
+      {
+        "index": 1,
+        "kind": "decision",
+        "decision_id": 210053114449470,
+        "status": "ready",
+        "model": "gpt-5.6-terra",
+        "thread_id": "01a1d2d8-d8c2-7290-96d5-c18b8a16fa43",
+        "latency_s": 5.7473650839529,
+        "diagnostic_count": 2,
+        "error": null
+      }
+    ],
+    "skill_invocations": 0,
+    "planner_connected": true,
+    "executor_kind": "scripted_skill",
+    "observation": {
+      "scene_revision": 0,
+      "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+      "simulation_time_s": 0,
+      "skill": {
+        "status": "idle",
+        "phase": "idle",
+        "active": false,
+        "requires_reset": false,
+        "elapsed_s": 0,
+        "reason": null,
+        "metrics": {
+          "right_elevation_m": 0,
+          "max_right_elevation_m": 0,
+          "tracking_error_m": 0,
+          "orientation_tracking_error_rad": 1.3010426069826053e-17,
+          "left_return_error_m": 0,
+          "right_return_error_m": 0,
+          "return_orientation_error_rad": 1.3010426069826053e-17,
+          "robot_max_abs_velocity": 0,
+          "eef_speed_m_s": 0,
+          "eef_angular_speed_rad_s": 0,
+          "base_xy_drift_m": 0,
+          "pelvis_height_m": 0.79,
+          "base_tilt_rad": 0,
+          "hold_above_minimum_s": 0,
+          "settled_for_s": 0,
+          "stop_settled": false,
+          "initial_settled_for_s": 0,
+          "left_eef_world_m": [
+            0.2674664002271595,
+            0.11786073926987385,
+            0.8853985548098052
+          ],
+          "right_eef_world_m": [
+            0.24806242838499276,
+            -0.09250971773806402,
+            0.9012660982881402
+          ]
+        }
+      },
+      "safety": {
+        "phase": "free_space",
+        "numerically_finite": true,
+        "numerical_error": null,
+        "joint_limits_valid": true,
+        "contact_violations": []
+      },
+      "execution_error": null,
+      "source": {
+        "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+      },
+      "scope": {
+        "observation": "structured_state_only",
+        "camera_input": false,
+        "vla_connected": false,
+        "policy_connected": false,
+        "hardware_execution_enabled": false
+      }
+    },
+    "camera_input": false,
+    "vla_connected": false,
+    "policy_connected": false,
+    "hardware_execution_enabled": false,
+    "protocol": "g1-scripted-subscription-planning-v1",
+    "source": {
+      "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+    },
+    "capability": {
+      "skill": "g1_right_arm_raise_hold_return",
+      "executor_kind": "scripted_skill",
+      "parameters": {},
+      "atomic": true,
+      "invocations": 1,
+      "description": "One fixed right-arm raise, one-second hold, original world-EEF return; left arm held stationary.",
+      "phases": [
+        "measured initial stability",
+        "raise",
+        "hold",
+        "original world-EEF return",
+        "measured final settle"
+      ],
+      "fixed_timing_s": {
+        "raise_s": 3,
+        "hold_s": 1,
+        "return_s": 3
+      },
+      "acceptance": {
+        "minimum_raise_m": 0.04,
+        "minimum_hold_s": 1,
+        "return_position_tolerance_m": 0.005,
+        "return_orientation_tolerance_rad": 0.05235987755982989,
+        "hard_tracking_error_m": 0.05,
+        "hard_orientation_tracking_error_rad": 0.05235987755982989,
+        "minimum_pelvis_height_m": 0.7,
+        "maximum_base_xy_drift_m": 0.08,
+        "maximum_base_tilt_rad": 0.15,
+        "maximum_robot_abs_velocity": 0.05,
+        "maximum_eef_speed_m_s": 0.01,
+        "maximum_eef_angular_speed_rad_s": 0.05,
+        "sustained_settle_s": 0.5
+      },
+      "unsupported": [
+        "independently selecting macro phases",
+        "repetition or multiple executions",
+        "other effectors or objects",
+        "phone or photography",
+        "video understanding",
+        "different hold durations or motion magnitudes",
+        "hardware execution",
+        "model-generated motor commands or controller parameters"
+      ]
+    },
+    "reviewed_decision_id": 210053114449470,
+    "observation_binding": {
+      "scene_revision": 0,
+      "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+      "simulation_time_s": 0,
+      "source": {
+        "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+      }
+    },
+    "decision_response": {
+      "decision": "execute",
+      "skill": "g1_right_arm_raise_hold_return",
+      "parameters": {},
+      "summary": "提议执行一次右臂固定抬起、保持1秒并返回原始世界坐标末端位置的脚本技能。",
+      "reason": "请求与目录中唯一的单次固定脚本技能完全一致；仅为待人工批准的仿真执行提案。",
+      "unsupported_requirements": []
+    },
+    "feedback_response": null,
+    "execution_result": null,
+    "result_capture_error": null,
+    "terminal_observed": false,
+    "physical_stop_proven": false,
+    "success": false
+  },
+  "visible_bound_task": "本提案绑定的任务：请抬起右臂，保持一秒，然后回到原来的位置。",
+  "draft": "请抬起右臂，保持一秒，然后回到原来的位置。",
+  "visible_proposal": "当前模型提案（实际回复）\n\n本提案绑定的任务：请抬起右臂，保持一秒，然后回到原来的位置。\n\n模型建议执行固定技能：提议执行一次右臂固定抬起、保持1秒并返回原始世界坐标末端位置的脚本技能。\n\n当前提案 ID：210053114449470\n\n{\n  \"decision\": \"execute\",\n  \"skill\": \"g1_right_arm_raise_hold_return\",\n  \"parameters\": {},\n  \"summary\": \"提议执行一次右臂固定抬起、保持1秒并返回原始世界坐标末端位置的脚本技能。\",\n  \"reason\": \"请求与目录中唯一的单次固定脚本技能完全一致；仅为待人工批准的仿真执行提案。\",\n  \"unsupported_requirements\": []\n}",
+  "horizontal_overflow": false
+}

@@ -1,0 +1,201 @@
+{
+  "status": "unsupported",
+  "configured": true,
+  "provider": "codex_subscription",
+  "model": "gpt-5.6-terra",
+  "task": "请抬起右臂，然后拿起手机拍照，再回到原位。",
+  "decision_id": 95600662406480,
+  "decision": {
+    "decision": "unsupported",
+    "skill": null,
+    "parameters": {},
+    "summary": "请求包含抬右臂、拿手机和拍照后返回原位，无法完整满足。",
+    "reason": "唯一技能仅能在仿真中执行一次固定右臂抬起、保持1秒并返回；不支持操作物体或拍照。",
+    "unsupported_requirements": [
+      "拿起手机：不支持物体操作或其他末端任务。",
+      "拍照：不支持手机或摄影功能。"
+    ]
+  },
+  "assessment": null,
+  "assessment_valid": false,
+  "assessment_cancelled": false,
+  "local_outcome": null,
+  "execution_error": null,
+  "error": null,
+  "locks_scene": false,
+  "thread_id": "01a1d2bc-d441-7992-8c4c-c17f7dc722fd",
+  "latency_s": 5.750281999993604,
+  "total_latency_s": 5.750281999993604,
+  "history": [
+    {
+      "index": 1,
+      "kind": "decision",
+      "decision_id": 95600662406480,
+      "status": "unsupported",
+      "model": "gpt-5.6-terra",
+      "thread_id": "01a1d2bc-d441-7992-8c4c-c17f7dc722fd",
+      "latency_s": 5.750281999993604,
+      "diagnostic_count": 2,
+      "error": null
+    }
+  ],
+  "skill_invocations": 0,
+  "planner_connected": true,
+  "executor_kind": "scripted_skill",
+  "observation": {
+    "scene_revision": 0,
+    "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+    "simulation_time_s": 0.0,
+    "skill": {
+      "status": "idle",
+      "phase": "idle",
+      "active": false,
+      "requires_reset": false,
+      "elapsed_s": 0.0,
+      "reason": null,
+      "metrics": {
+        "right_elevation_m": 0.0,
+        "max_right_elevation_m": 0.0,
+        "tracking_error_m": 0.0,
+        "orientation_tracking_error_rad": 1.3010426069826053e-17,
+        "left_return_error_m": 0.0,
+        "right_return_error_m": 0.0,
+        "return_orientation_error_rad": 1.3010426069826053e-17,
+        "robot_max_abs_velocity": 0.0,
+        "eef_speed_m_s": 0.0,
+        "eef_angular_speed_rad_s": 0.0,
+        "base_xy_drift_m": 0.0,
+        "pelvis_height_m": 0.79,
+        "base_tilt_rad": 0.0,
+        "hold_above_minimum_s": 0.0,
+        "settled_for_s": 0.0,
+        "stop_settled": false,
+        "initial_settled_for_s": 0.0,
+        "left_eef_world_m": [
+          0.2674664002271595,
+          0.11786073926987385,
+          0.8853985548098052
+        ],
+        "right_eef_world_m": [
+          0.24806242838499276,
+          -0.09250971773806402,
+          0.9012660982881402
+        ]
+      }
+    },
+    "safety": {
+      "phase": "free_space",
+      "numerically_finite": true,
+      "numerical_error": null,
+      "joint_limits_valid": true,
+      "contact_violations": []
+    },
+    "execution_error": null,
+    "source": {
+      "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+    },
+    "scope": {
+      "observation": "structured_state_only",
+      "camera_input": false,
+      "vla_connected": false,
+      "policy_connected": false,
+      "hardware_execution_enabled": false
+    }
+  },
+  "camera_input": false,
+  "vla_connected": false,
+  "policy_connected": false,
+  "hardware_execution_enabled": false,
+  "protocol": "g1-scripted-subscription-planning-v1",
+  "source": {
+    "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+  },
+  "capability": {
+    "skill": "g1_right_arm_raise_hold_return",
+    "executor_kind": "scripted_skill",
+    "parameters": {},
+    "atomic": true,
+    "invocations": 1,
+    "description": "One fixed right-arm raise, one-second hold, original world-EEF return; left arm held stationary.",
+    "phases": [
+      "measured initial stability",
+      "raise",
+      "hold",
+      "original world-EEF return",
+      "measured final settle"
+    ],
+    "fixed_timing_s": {
+      "raise_s": 3.0,
+      "hold_s": 1.0,
+      "return_s": 3.0
+    },
+    "acceptance": {
+      "minimum_raise_m": 0.04,
+      "minimum_hold_s": 1.0,
+      "return_position_tolerance_m": 0.005,
+      "return_orientation_tolerance_rad": 0.05235987755982989,
+      "hard_tracking_error_m": 0.05,
+      "hard_orientation_tracking_error_rad": 0.05235987755982989,
+      "minimum_pelvis_height_m": 0.7,
+      "maximum_base_xy_drift_m": 0.08,
+      "maximum_base_tilt_rad": 0.15,
+      "maximum_robot_abs_velocity": 0.05,
+      "maximum_eef_speed_m_s": 0.01,
+      "maximum_eef_angular_speed_rad_s": 0.05,
+      "sustained_settle_s": 0.5
+    },
+    "unsupported": [
+      "independently selecting macro phases",
+      "repetition or multiple executions",
+      "other effectors or objects",
+      "phone or photography",
+      "video understanding",
+      "different hold durations or motion magnitudes",
+      "hardware execution",
+      "model-generated motor commands or controller parameters"
+    ]
+  },
+  "reviewed_decision_id": 95600662406480,
+  "observation_binding": {
+    "scene_revision": 0,
+    "state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+    "simulation_time_s": 0.0,
+    "source": {
+      "revision": "a5e40a25c5c080ae114a925dae94215c7cb6d793"
+    }
+  },
+  "decision_response": {
+    "decision": "unsupported",
+    "skill": null,
+    "parameters": {},
+    "summary": "请求包含抬右臂、拿手机和拍照后返回原位，无法完整满足。",
+    "reason": "唯一技能仅能在仿真中执行一次固定右臂抬起、保持1秒并返回；不支持操作物体或拍照。",
+    "unsupported_requirements": [
+      "拿起手机：不支持物体操作或其他末端任务。",
+      "拍照：不支持手机或摄影功能。"
+    ]
+  },
+  "feedback_response": null,
+  "execution_result": null,
+  "result_capture_error": null,
+  "terminal_observed": false,
+  "physical_stop_proven": false,
+  "success": false,
+  "runner": {
+    "created_at_utc": "2026-11-13T02:29:18.172491+00:00",
+    "authorization": "proposal_only_no_execution",
+    "terminal_status": "unsupported",
+    "proposal_approved": false,
+    "stop_after_s": null,
+    "stop_requested_at_s": null,
+    "simulation_timestep_s": 0.002,
+    "initial_time_s": 0.0,
+    "final_time_s": 0.0,
+    "initial_state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+    "final_state_fingerprint": "754352d800dced2226a16f8242f8812d0e92c6b9121502a2c80d9a4529f6f1e3",
+    "physics_steps": 0,
+    "execution_performed": false,
+    "provider_wait_physics": "paused_simulation_only_not_hardware_wait_validation",
+    "scenario_passed": true
+  }
+}

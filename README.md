@@ -4,34 +4,48 @@
 
 Robot simulation workspace with an inherited Panda reference and a G1/MuJoCo validation track.
 
-## G1 direction: real-physics scripted skill, not a VLA task baseline
+## G1 direction: real planner → reviewed scripted skill, not VLA
 
-The final hardware target is Unitree G1 EDU with dual Dex1. This `work/g1-baseline` branch now runs a physically verified **scripted right-arm raise → hold → return** skill. See the [protocol and execution record (Chinese)](G1_BASELINE_PLAN.zh-CN.md).
+The final hardware target is Unitree G1 EDU with dual Dex1. This `work/g1-baseline` branch connects the real subscription-backed planner to one physically verified **scripted right-arm raise → hold → return** skill. The model proposes one fixed macro; its internal phases are human-coded, not learned or independently planned. See the [protocol and execution record (Chinese)](G1_BASELINE_PLAN.zh-CN.md#12-真实-planner-接入人工技能与实测反馈).
 
 G1 source is a Git submodule pinned to `a5e40a25c5c080ae114a925dae94215c7cb6d793`. Initialize only the scene assets below; neither an existing home-directory checkout nor the hardware SDK is required:
 
 ```sh
+git clone --branch work/g1-baseline https://github.com/youseihuayu-wonderful/SkillWeave-Sim.git
+cd SkillWeave-Sim
+uv sync --locked
 git submodule update --init third_party/g1-vla-control
 git -C third_party/g1-vla-control submodule update --init third_party/mujoco_menagerie third_party/dex1_1_service
 uv run --locked python g1_scene_preview.py --port 8778
 ```
 
-Open http://127.0.0.1:8778/ and click **开始抬臂技能**. The skill first verifies initial stability, then raises, holds and returns to the original world-frame EEF poses. **物理停止并验证稳定** cancels the trajectory and verifies measured rest; it does not freeze physics or report task success. The dashboard starts paused, exposes real results and keeps planner/VLA/hardware disconnected. `server.py` and the inherited instructions below still run Panda, not G1.
+Open http://127.0.0.1:8778/. Planning requires the official Codex CLI on `PATH`, logged in through **`codex login` with ChatGPT**; it reuses `planner.py`, not an API-key fallback. The requested model in this round was `gpt-5.6-terra`, not a proven server-side weight snapshot.
 
-[Actual browser recording](media/g1-scripted-arm-baseline.mp4) · [full-motion evidence](results/g1_scripted_arm_raise.json) · [physical-stop evidence](results/g1_scripted_arm_stop.json) · [dashboard acceptance](results/g1_scripted_arm_browser_smoke.json). Nine focused real-model regression tests passed. Live movement changes actuator commands and advances MuJoCo; it does not write live joint positions, replay a video, weld the floating base, alter model gains, or bypass contact checks.
+1. Enter `请抬起右臂，保持一秒，然后回到原来的位置。` and click **请求真实 GPT 规划**. No skill runs yet.
+2. Review the bound original task, actual proposal and proposal ID; click **批准当前提案并执行** to authorize exactly one fixed skill.
+3. Read the measured terminal result and the separate real model assessment. **取消规划 / 物理停止** during motion continues physics until measured rest; stopping is not task success.
 
-The earlier [VLA first-target diagnosis](results/g1_first_target.json) remains a separate offline result. Scripted-skill success does not demonstrate neural stacking, a complete raw32 replay, the real-time observation-age budget, or hardware safety.
+Planning, approval waits and result assessment deliberately pause simulation time. This is not hardware timing or observation-freshness evidence. Scene-changing controls are locked during the session; terminal skills require explicit reset. Unsupported complete requests are refused, not partially substituted. The model gets structured state, not camera frames, and cannot generate motor targets. VLA and hardware remain disabled. The independent manual baseline is under **独立手动基线 / 空闲预览**, never an automatic planning fallback. `server.py` and the inherited instructions below still run Panda, not G1.
+
+[Actual approval/physics recording](media/g1-planner-approved-skill.mp4) · [real UI result and feedback](results/g1_planner_ui_approval.json) · [physical-stop/feedback recording](media/g1-planner-physical-stop.mp4) · [real UI stop result](results/g1_planner_ui_stop.json).
+
+Separate genuine runs verified [successful execution](results/g1_planner_success.json), [whole-task refusal of phone photography](results/g1_planner_unsupported.json), [physical stopping](results/g1_planner_stopped.json), and [actual injected-collision failure with real model feedback](results/g1_planner_collision_failure.json). The UI also [refused a five-second hold](results/g1_planner_ui_guards.json); conflicting-control rejections are in the UI execution report above. Its initial two-second automation wait expired before approval; the completed stop check continued the same unapproved proposal without another planning request.
+
+All **27 focused planning contract tests** passed; controlled provider/executor doubles in those tests are not genuine model or physical execution evidence. The earlier [manual skill recording](media/g1-scripted-arm-baseline.mp4) and nine real-model regressions remain separate. The unchanged physical controller writes actuator commands and advances MuJoCo; it does not write live joint positions, replay a video, weld the floating base, alter gains, or bypass contact checks.
+
+The earlier [VLA first-target diagnosis](results/g1_first_target.json) remains a separate offline result. This single-macro integration does not demonstrate general task decomposition, human-video understanding, phone photography, neural stacking, a complete raw32 replay, the real-time observation-age budget, or hardware safety. Raw model prose cannot override a failed/stopped physical outcome; measured low-speed rest is not proof that a collision has cleared.
 
 Generate new local evidence without overwriting the committed records:
 
 ```sh
 uv run --locked python g1_baseline_manifest.py --output results/local_g1_manifest.json
-uv run --locked python g1_arm_skill.py --output results/local_g1_arm_raise.json
-uv run --locked python g1_arm_skill.py --output results/local_g1_arm_stop.json --stop-after-s 10.5
-uv run --locked python -m unittest discover -s tests -p 'test_g1_arm_skill.py' -v
+uv run --locked python run_g1_planning.py --output results/local_g1_proposal.json
+uv run --locked python run_g1_planning.py --execute --output results/local_g1_planned_raise.json
+uv run --locked python run_g1_planning.py --execute --stop-after-s 10.5 --output results/local_g1_planned_stop.json
+uv run --locked python -m unittest discover -s tests -p 'test_g1_planning.py' -v
 ```
 
-Choose unused output paths on subsequent runs. Source revisions, tracked bytes and scene assets are checked at startup; the [current source/environment inventory](results/g1_scripted_skill_manifest.json) includes controller and regression-test hashes. Missing checkpoint, synchronized author32 packages, GPU execution evidence and scene calibration still block a formal neural baseline, not this explicitly scripted simulation skill. The upstream neural loop and execution prohibitions remain unchanged.
+Choose unused output paths on subsequent runs. Without `--execute`, the runner only requests a real proposal and never steps physics; `--execute` explicitly approves that actual bound proposal. Evidence is atomically created without overwrite. Source revisions, tracked bytes and scene assets are checked at startup; the [current source/environment inventory](results/g1_planner_manifest.json) includes planner, executor, UI and test hashes. Its inventory process itself runs neither the model nor robot; use the separate execution reports above. Missing checkpoint, synchronized author32 packages, GPU execution evidence and scene calibration still block the neural baseline. The upstream neural loop and execution prohibitions remain unchanged.
 
 ## Inherited Panda reference: identity and scope
 

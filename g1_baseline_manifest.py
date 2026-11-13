@@ -162,6 +162,8 @@ def build_manifest(source: Path | None = None, *, input_roots: list[Path] | None
                 "g1_baseline_manifest.py", "g1_preflight.py", "g1_first_target.py",
                 "g1_scene_preview.py", "tests/test_g1_first_target.py",
                 "g1_arm_skill.py", "tests/test_g1_arm_skill.py",
+                "planner.py", "g1_planning.py", "run_g1_planning.py",
+                "tests/test_g1_planning.py",
             )
         },
         "host": {"system": platform.system(), "release": platform.release(),
